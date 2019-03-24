@@ -8,16 +8,11 @@ namespace AutoCCG
 
         public int slotId;
 
-        private ShopController shopController;
-
-        private void Awake()
-        {
-            shopController = GameObject.FindObjectOfType<ShopController>();
-        }
-
         public void Buy()
         {
-            shopController.BuyCardById(slotId);
+            var playerModel = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerModel>();
+            var cardId = playerModel.shopController.cards.IndexOf(cardView.cardModel);
+            playerModel.CmdBuyCardFromId(cardId);
         }
     }
 }

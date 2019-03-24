@@ -11,13 +11,15 @@ namespace AutoCCG
 
         public int cardLimit;
 
-        public BattlegroundsController battlegroundController;
+        void Start()
+        {
+            handView = transform.parent.GetComponent<PlayerModel>().playerView.handView;
+        }
 
         public void AddCard(CardModel card)
         {
-            var newCard = Instantiate(card);
-            cards.Add(newCard);
-            handView.SpawnCard(newCard);
+            cards.Add(card);
+            handView.SpawnCard(card);
         }
 
         public bool IsFull()

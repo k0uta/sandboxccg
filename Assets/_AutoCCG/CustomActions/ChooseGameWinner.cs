@@ -7,7 +7,7 @@ namespace HutongGames.PlayMaker.Actions
     {
         [Tooltip("The game winner name")]
         [UIHint(UIHint.Variable)]
-        public FsmString gameOverMessage;
+        public FsmString gameWinnerName;
 
         // Code that runs on entering the state.
         public override void OnEnter()
@@ -18,13 +18,13 @@ namespace HutongGames.PlayMaker.Actions
 
             if ((playerModel.currentHealth <= 0 && enemyModel.currentHealth <= 0) || (playerModel.currentHealth == enemyModel.currentHealth))
             {
-                gameOverMessage.Value = "Game Over\nDraw";
+                gameWinnerName.Value = "No one";
             } else if(playerModel.currentHealth > enemyModel.currentHealth)
             {
-                gameOverMessage.Value = "Game Over\nPlayer Wins";
+                gameWinnerName.Value = playerModel.playerName;
             } else if(enemyModel.currentHealth > playerModel.currentHealth)
             {
-                gameOverMessage.Value = "Game Over\nEnemy Wins";
+                gameWinnerName.Value = enemyModel.playerName;
             }
 
             Finish();

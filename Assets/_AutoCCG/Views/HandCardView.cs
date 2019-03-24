@@ -14,7 +14,7 @@ namespace AutoCCG
 
         public int selectionOrder;
 
-        public HandController handController;
+        public HandView handView;
 
         void Awake()
         {
@@ -26,11 +26,11 @@ namespace AutoCCG
 
         void OnToggleValueChanged(bool isOn)
         {
-            if(toggle.isOn) {
-                handController.AddCardToBattlegroundsQueue(this);
+            if (toggle.isOn) {
+                handView.AddCardToBattlegroundsQueue(this);
             } else
             {
-                handController.RemoveCardFromBattlegroundsQueue(this);
+                handView.RemoveCardFromBattlegroundsQueue(this);
             }
             UpdateVisualState();
         }
