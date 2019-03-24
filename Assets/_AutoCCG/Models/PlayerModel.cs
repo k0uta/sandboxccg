@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
 
 namespace AutoCCG
@@ -26,6 +27,12 @@ namespace AutoCCG
 
         void Start()
         {
+            StartCoroutine(StartPlayerCoroutine());
+        }
+
+        IEnumerator StartPlayerCoroutine()
+        {
+            yield return new WaitUntil(() => GameObject.FindObjectOfType<BoardView>() != null);
             var boardView = GameObject.FindObjectOfType<BoardView>();
             if (isLocalPlayer)
             {
@@ -41,16 +48,31 @@ namespace AutoCCG
             {
                 playerView = boardView.enemyView;
             }
+
+            GetComponentInChildren<HandModel>().handView = playerView.handView;
+            GetComponentInChildren<BattlegroundsModel>().battlegroundsView = playerView.battlegroundsView;
         }
 
         public override void OnStartServer()
         {
+            //var boardController = GameObject.FindObjectOfType<BoardController>();
+            //boardController.AddPlayer(this.gameObject);
+            StartCoroutine(StartServerCoroutine());
+        }
+
+        IEnumerator StartServerCoroutine()
+        {
+            yield return new WaitUntil(() => GameObject.FindObjectOfType<BoardController>() != null);
             var boardController = GameObject.FindObjectOfType<BoardController>();
             boardController.AddPlayer(this.gameObject);
         }
 
         public void Update()
         {
+            if(!playerView)
+            {
+                return;
+            }
             playerView.goldText.text = string.Format("Gold\n{0}", currentGold);
             playerView.healthText.text = string.Format("Health\n{0}", currentHealth);
             playerView.handSizeText.text = string.Format("Hand\n{0}/{1}", handModel.cards.Count, handModel.cardLimit);
@@ -84,7 +106,7 @@ namespace AutoCCG
         [Command]
         public void CmdPayForRestock()
         {
-            if(!Pay(shopController.restockPrice))
+            if (!Pay(shopController.restockPrice))
             {
                 return;
             }
@@ -122,7 +144,7 @@ namespace AutoCCG
         public void RpcBuyShopCard(int cardId)
         {
             var card = shopController.cards[cardId];
-            
+
             handModel.AddCard(card);
 
             shopController.RemoveCardById(cardId);

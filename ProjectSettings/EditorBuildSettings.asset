@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_AutoCCG/Lobby.unity
+    guid: 69a9049a2d43bfd449c9debbfa8fa959
+  - enabled: 1
     path: Assets/_AutoCCG/AutoCCG.unity
     guid: 57af17f54e1469948b2674b9390ab1e8
   m_configObjects: {}

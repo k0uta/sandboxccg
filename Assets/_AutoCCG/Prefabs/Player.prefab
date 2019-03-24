@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 659278444640296285}
   - component: {fileID: 659278444640296286}
-  - component: {fileID: 659278444640296287}
   - component: {fileID: 659278444640296280}
   m_Layer: 0
   m_Name: Player
@@ -48,32 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc679d75021ca534dbb7086d43ccf26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 6
+  currentGold: 0
   currentHealth: 0
-  baseHealth: 20
   playerView: {fileID: 0}
   handModel: {fileID: 659278444895565129}
   shopController: {fileID: 659278445784890285}
   handController: {fileID: 659278444895565131}
   battlegroundsModel: {fileID: 659278445511630681}
   playerName: 
---- !u!114 &659278444640296287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659278444640296284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccf8cd11932de1349903e67c567a5aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 0}
-  healthText: {fileID: 0}
-  handSizeText: {fileID: 0}
-  handView: {fileID: 0}
-  battlegroundsView: {fileID: 0}
 --- !u!114 &659278444640296280
 MonoBehaviour:
   m_ObjectHideFlags: 0
