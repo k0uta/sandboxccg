@@ -622,10 +622,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: c4d85cf7-682c-4875-90eb-526fa9ff231a
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: SandboxCCG
+  organizationId: murilo-fioravanti-costa
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

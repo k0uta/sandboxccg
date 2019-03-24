@@ -20,11 +20,6 @@ namespace AutoCCG
             enemy.GetComponentInChildren<HandController>().SendQueueToBattlegrounds();
         }
 
-        public void ResetGame()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
         public void AddPlayer(GameObject playerObject)
         {
             var playerModel = playerObject.GetComponent<PlayerModel>();

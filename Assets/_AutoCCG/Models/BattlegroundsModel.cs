@@ -11,7 +11,7 @@ namespace AutoCCG
 
         void Start()
         {
-            battlegroundsView = transform.parent.GetComponent<PlayerModel>().playerView.battlegroundsView;
+            //battlegroundsView = transform.parent.GetComponent<PlayerModel>().playerView.battlegroundsView;
         }
 
         public void CreateBattlegroundsCards(List<CardModel> cards)

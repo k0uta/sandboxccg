@@ -13,7 +13,7 @@ namespace AutoCCG
 
         void Start()
         {
-            handView = transform.parent.GetComponent<PlayerModel>().playerView.handView;
+            //handView = transform.parent.GetComponent<PlayerModel>().playerView.handView;
         }
 
         public void AddCard(CardModel card)
