@@ -11,8 +11,6 @@ namespace AutoCCG
 
         public Transform cardArea;
 
-        public HandController handController;
-
         int internalCounter = 0;
 
         public void SpawnCard(CardModel cardModel)
@@ -21,7 +19,7 @@ namespace AutoCCG
             card.name = string.Format("Card {0} ({1})", ++internalCounter, cardModel.name);
             var handCardView = card.GetComponent<HandCardView>();
 
-            handCardView.handController = handController;
+            handCardView.handView = this;
             handCardView.cardView.SetCard(cardModel);
             cards.Add(handCardView);
         }
@@ -31,6 +29,18 @@ namespace AutoCCG
             var cardView = cards.Find(card => card.cardView.cardModel == cardModel);
             cards.Remove(cardView);
             Destroy(cardView.gameObject);
+        }
+
+        public void AddCardToBattlegroundsQueue(HandCardView handCardView)
+        {
+            var handCardId = cards.IndexOf(handCardView);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerModel>().CmdAddCardToBattlegroundsQueue(handCardId);
+        }
+
+        public void RemoveCardFromBattlegroundsQueue(HandCardView handCardView)
+        {
+            var handCardId = cards.IndexOf(handCardView);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerModel>().CmdRemoveCardToBattlegroundsQueue(handCardId);
         }
     }
 }

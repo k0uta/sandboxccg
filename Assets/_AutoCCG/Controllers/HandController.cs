@@ -42,9 +42,10 @@ namespace AutoCCG
 
         void PurgeExcessBattlegroundsQueue()
         {
-            while (battlegroundsQueueCards.Count > battlegroundCardLimit)
+            var excessCardCount = battlegroundsQueueCards.Count - battlegroundCardLimit;
+            for (int i = 0; i < excessCardCount; i++)
             {
-                var handCard = battlegroundsQueueCards[0];
+                var handCard = battlegroundsQueueCards[i];
                 handCard.toggle.isOn = false;
             }
         }

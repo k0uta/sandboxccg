@@ -1,75 +1,50 @@
 ﻿using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace AutoCCG
 {
     public class ShopController : MonoBehaviour
     {
-        public List<SlotView> slots;
+        public DeckModel deck;
 
-        public DeckController deckController;
+        public List<CardModel> cards;
 
-        public PlayerModel playerModel;
+        public ShopView shopView;
 
         public int restockPrice;
 
-        public TextMeshProUGUI restockCostText;
-
-        public HandModel handModel;
-
-        public void Restock()
+        void Awake()
         {
-            var cards = deckController.cards;
+            foreach (var cardEntry in deck.entries)
+            {
+                for (int i = 0; i < cardEntry.quantity; i++)
+                {
+                    cards.Add(Instantiate(cardEntry.card));
+                }
+            }
+        }
+
+        public void Restock(int seed)
+        {
+            Random.InitState(seed);
             cards.Shuffle();
 
-            for (int i = 0; i < Mathf.Min(slots.Count, cards.Count); i++)
+            if (shopView)
             {
-                var slot = slots[i];
-                slot.cardView.SetCard(cards[i]);
-                slot.gameObject.SetActive(true);
+                shopView.UpdateSlotsCard(cards);
             }
         }
 
-        void Start()
+        public void RemoveCardById(int cardId)
         {
-            for (int i = 0; i < slots.Count; i++)
+            var card = cards[cardId];
+
+            cards.Remove(card);
+
+            if (shopView)
             {
-                slots[i].slotId = i;
+                shopView.slots.Find(gameObject => gameObject.GetComponent<SlotView>().cardView.cardModel == card).gameObject.SetActive(false);
             }
-
-            Restock();
-            restockCostText.text = string.Format("{0}g", restockPrice);
-        }
-
-        public void PayForRestock()
-        {
-            if (!playerModel.Pay(restockPrice))
-            {
-                return;
-            }
-
-            Restock();
-        }
-
-        public void BuyCardById(int slotId)
-        {
-            var slot = slots[slotId];
-            var card = slot.cardView.cardModel;
-            if (handModel.IsFull() || !playerModel.Pay(card.cost))
-            {
-                return;
-            }
-
-            slot.gameObject.SetActive(false);
-
-            handModel.AddCard(card);
-
-            // Temp
-            GameObject.FindGameObjectWithTag("Enemy").GetComponent<PlayerModel>().handModel.AddCard(card);
-
-            deckController.cards.Remove(card);
         }
     }
-
 }

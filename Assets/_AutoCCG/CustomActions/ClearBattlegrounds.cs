@@ -9,17 +9,11 @@ namespace HutongGames.PlayMaker.Actions
         public override void OnEnter()
         {
             var boardController = Fsm.GameObject.GetComponent<BoardController>();
-            var playerBattlegrounds = boardController.player.GetComponentInChildren<BattlegroundsModel>();
-            var enemyBattlegrounds = boardController.enemy.GetComponentInChildren<BattlegroundsModel>();
+            var playerModel = boardController.player.GetComponent<PlayerModel>();
+            var enemyModel = boardController.enemy.GetComponent<PlayerModel>();
 
-            var playerHandController = boardController.player.GetComponentInChildren<HandController>();
-            var enemyHandController = boardController.enemy.GetComponentInChildren<HandController>();
-
-            playerBattlegrounds.ClearBattlegrounds();
-            enemyBattlegrounds.ClearBattlegrounds();
-
-            playerHandController.EnableBattlegroundsQueueCards();
-            enemyHandController.EnableBattlegroundsQueueCards();
+            playerModel.RpcClearBattlegrounds();
+            enemyModel.RpcClearBattlegrounds();
 
             Finish();
         }

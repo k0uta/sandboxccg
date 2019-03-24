@@ -9,6 +9,11 @@ namespace AutoCCG
 
         public List<BattlegroundsCardModel> battlegroundsCards;
 
+        void Start()
+        {
+            battlegroundsView = transform.parent.GetComponent<PlayerModel>().playerView.battlegroundsView;
+        }
+
         public void CreateBattlegroundsCards(List<CardModel> cards)
         {
             battlegroundsCards = new List<BattlegroundsCardModel>();
