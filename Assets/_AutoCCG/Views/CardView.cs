@@ -18,6 +18,14 @@ namespace AutoCCG
 
         public TextMeshProUGUI cardCost;
 
+        public Slider cardLifeSlider;
+
+        public Sprite rangedIcon;
+
+        public Sprite meleeIcon;
+
+        public Image rangeIcon;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -38,9 +46,18 @@ namespace AutoCCG
             cardImage.sprite = cardModel.sprite;
 
             cardTitle.text = cardModel.title;
-            cardAttack.text = string.Format("Atk\n{0}", cardModel.attack);
-            cardLife.text = string.Format("Life\n{0}", cardModel.life);
-            cardCost.text = string.Format("Cost\n{0}", cardModel.cost);
+            cardAttack.text = string.Format("{0}", cardModel.attack);
+            cardCost.text = string.Format("{0}g", cardModel.cost);
+
+            rangeIcon.sprite = cardModel.ranged ? rangedIcon : meleeIcon;
+
+            SetCardLife(cardModel.life);
+        }
+
+        public void SetCardLife(int currentLife)
+        {
+            cardLife.text = string.Format("{0}/{1}", currentLife, cardModel.life);
+            cardLifeSlider.value = (float)currentLife / (float)cardModel.life;
         }
     }
 
