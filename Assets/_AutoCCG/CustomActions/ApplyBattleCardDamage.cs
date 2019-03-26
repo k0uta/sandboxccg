@@ -20,10 +20,26 @@ namespace HutongGames.PlayMaker.Actions
             var playerFrontCard = playerBattlegrounds.battlegroundsCards[0];
             var enemyFrontCard = enemyBattlegrounds.battlegroundsCards[0];
 
-            playerModel.RpcApplyFrontCardDanage(enemyFrontCard.cardModel.attack);
-            enemyModel.RpcApplyFrontCardDanage(playerFrontCard.cardModel.attack);
+            var playerTotalDamage = GetBattlegroundsTotalDamage(playerBattlegrounds);
+            var enemyTotalDamage = GetBattlegroundsTotalDamage(enemyBattlegrounds);
+
+            playerModel.RpcApplyFrontCardDanage(enemyTotalDamage);
+            enemyModel.RpcApplyFrontCardDanage(playerTotalDamage);
 
             Finish();
+        }
+
+        int GetBattlegroundsTotalDamage(BattlegroundsModel battlegrounds)
+        {
+            var cards = battlegrounds.battlegroundsCards;
+            int totalDamage = 0;
+            for (int i = 0; i < cards.Count; i++)
+            {
+                var cardModel = cards[i].cardModel;
+                totalDamage += cardModel.GetDamage(i == 0);
+            }
+
+            return totalDamage;
         }
     }
 

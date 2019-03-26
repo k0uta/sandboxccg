@@ -76,6 +76,8 @@ namespace AutoCCG
             playerView.goldText.text = string.Format("Gold\n{0}", currentGold);
             playerView.healthText.text = string.Format("Health\n{0}", currentHealth);
             playerView.handSizeText.text = string.Format("Hand\n{0}/{1}", handModel.cards.Count, handModel.cardLimit);
+
+            playerView.playerNameText.text = string.Format("{0} Hand", playerName);
         }
 
         public bool Pay(int cost)

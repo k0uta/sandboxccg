@@ -30,14 +30,12 @@ namespace AutoCCG
             {
                 player = playerObject;
                 playerObject.name = "Player";
-                playerModel.playerName = "Player 1";
             }
             else if (!this.enemy)
             {
                 enemy = playerObject;
                 playerObject.name = "Enemy";
                 GetComponent<PlayMakerFSM>().SetState("Start Game");
-                playerModel.playerName = "Player 2";
             }
             else
             {
