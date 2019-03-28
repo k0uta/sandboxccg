@@ -16,5 +16,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 239c8e27f1046db44847edfe51c466c2, type: 3}
   attack: 2
   life: 2
-  cost: 2
+  cost: 1
   ranged: 1

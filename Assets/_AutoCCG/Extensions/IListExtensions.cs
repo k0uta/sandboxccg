@@ -37,7 +37,7 @@ public static class IListExtensions
             }
         }
 
-        for (int i = 0; i < invalidIds.Count; i++)
+        for (int i = invalidIds.Count - 1; i >= 0; i--)
         {
             var invalidId = invalidIds[i];
             var listObject = targetList[invalidId];
@@ -45,7 +45,6 @@ public static class IListExtensions
             targetList.Add(listObject);
         }
 
-        var newOrder = new List<int>();
         for (int i = 0; i < weights.Count; i++)
         {
             var r = WeightedChoice(weights);
