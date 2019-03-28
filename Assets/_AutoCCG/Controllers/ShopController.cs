@@ -13,6 +13,8 @@ namespace AutoCCG
 
         public int restockPrice;
 
+        public int currentTurn;
+
         void Awake()
         {
             foreach (var cardEntry in deck.entries)
@@ -27,7 +29,7 @@ namespace AutoCCG
         public void Restock(int seed)
         {
             Random.InitState(seed);
-            cards.Shuffle();
+            cards.WeightedShuffle((cardModel) => cardModel.cost > currentTurn ? 0f : cardModel.cost / currentTurn);
 
             if (shopView)
             {
