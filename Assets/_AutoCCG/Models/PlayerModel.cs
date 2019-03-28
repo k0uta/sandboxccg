@@ -105,6 +105,12 @@ namespace AutoCCG
             currentGold += damageAmount;
         }
 
+        [ClientRpc]
+        public void RpcSetCurrentTurn(int currentTurn)
+        {
+            shopController.currentTurn = currentTurn;
+        }
+
         [Command]
         public void CmdPayForRestock()
         {
