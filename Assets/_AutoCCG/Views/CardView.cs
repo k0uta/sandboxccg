@@ -20,11 +20,9 @@ namespace AutoCCG
 
         public Slider cardLifeSlider;
 
-        public Sprite rangedIcon;
+        public Transform skillsArea;
 
-        public Sprite meleeIcon;
-
-        public Image rangeIcon;
+        float skillItemSize = 15f;
 
         // Start is called before the first frame update
         void Start()
@@ -49,9 +47,27 @@ namespace AutoCCG
             cardAttack.text = string.Format("{0}", cardModel.attack);
             cardCost.text = string.Format("{0}g", cardModel.cost);
 
-            rangeIcon.sprite = cardModel.ranged ? rangedIcon : meleeIcon;
+            SetCardSkills();
 
             SetCardLife(cardModel.life);
+        }
+
+        void SetCardSkills()
+        {
+            for (int i = skillsArea.childCount - 1; i >= 0; i--)
+            {
+                Destroy(skillsArea.GetChild(i).gameObject);
+            }
+
+            foreach (var skill in cardModel.cardSkills)
+            {
+                GameObject skillImageObject = new GameObject();
+                var skillImage = skillImageObject.AddComponent<Image>();
+                skillImage.sprite = skill.sprite;
+                skillImage.preserveAspect = true;
+                skillImageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(skillItemSize, skillItemSize);
+                skillImageObject.transform.SetParent(skillsArea);
+            }
         }
 
         public void SetCardLife(int currentLife)
