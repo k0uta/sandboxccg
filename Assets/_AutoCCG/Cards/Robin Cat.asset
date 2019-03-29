@@ -18,3 +18,5 @@ MonoBehaviour:
   life: 2
   cost: 1
   ranged: 1
+  cardSkills:
+  - {fileID: 11400000, guid: e4945821dc9df014bbb2c7e8c26eb149, type: 2}

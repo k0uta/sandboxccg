@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace AutoCCG
 {
@@ -16,6 +17,8 @@ namespace AutoCCG
         public int cost;
 
         public bool ranged;
+
+        public List<CardSkillModel> cardSkills;
 
         public int GetDamage(bool isFrontLiner)
         {

@@ -50,7 +50,7 @@ namespace AutoCCG
             }
 
             GetComponentInChildren<HandModel>().handView = playerView.handView;
-            GetComponentInChildren<BattlegroundsModel>().battlegroundsView = playerView.battlegroundsView;
+            battlegroundsModel.battlegroundsView = playerView.battlegroundsView;
         }
 
         public override void OnStartServer()
@@ -217,21 +217,36 @@ namespace AutoCCG
         }
 
         [ClientRpc]
-        public void RpcApplyFrontCardDanage(int damage)
-        {
-            var battlegroundsModel = GetComponentInChildren<BattlegroundsModel>();
-            var frontCard = battlegroundsModel.battlegroundsCards[0];
-
-            frontCard.ApplyDamage(damage);
-
-            battlegroundsModel.battlegroundsView.UpdateCardsView();
-        }
-
-        [ClientRpc]
         public void RpcClearBattlegrounds()
         {
             battlegroundsModel.ClearBattlegrounds();
             handController.EnableBattlegroundsQueueCards();
+        }
+
+        [ClientRpc]
+        public void RpcPerformBattlegroundsPhaseSkills(CardSkillPhase phase)
+        {
+            var battlegroundsCards = battlegroundsModel.battlegroundsCards;
+            foreach (var card in battlegroundsCards)
+            {
+                card.PerformSkillsForPhase(phase);
+            }
+
+            battlegroundsModel.battlegroundsView.UpdateCardsView();
+            battlegroundsModel.enemyBattlegrounds.battlegroundsView.UpdateCardsView();
+        }
+
+        [ClientRpc]
+        public void RpcSyncBattlegrounds()
+        {
+            if (isLocalPlayer)
+            {
+                return;
+            }
+
+            var localPlayerBattlegrounds = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<BattlegroundsModel>();
+            localPlayerBattlegrounds.enemyBattlegrounds = battlegroundsModel;
+            battlegroundsModel.enemyBattlegrounds = localPlayerBattlegrounds;
         }
     }
 }
