@@ -9,6 +9,8 @@ namespace AutoCCG
 
         public List<BattlegroundsCardModel> battlegroundsCards;
 
+        public BattlegroundsModel enemyBattlegrounds;
+
         void Start()
         {
             //battlegroundsView = transform.parent.GetComponent<PlayerModel>().playerView.battlegroundsView;
@@ -21,6 +23,7 @@ namespace AutoCCG
             {
                 var battlegroundsCard = new BattlegroundsCardModel(cardModel);
                 battlegroundsCards.Add(battlegroundsCard);
+                battlegroundsCard.playerBattlegrounds = this;
                 battlegroundsView.SpawnBattlegroundsCard(battlegroundsCard);
             }
         }
@@ -37,6 +40,16 @@ namespace AutoCCG
             {
                 RemoveBattlegroundsCard(battlegroundsCards[i]);
             }
+        }
+
+        public List<BattlegroundsCardModel> GetArea(Area area)
+        {
+            if (area == Area.Frontline)
+            {
+                return battlegroundsCards.GetRange(0, 1);
+            }
+
+            throw new KeyNotFoundException();
         }
     }
 }

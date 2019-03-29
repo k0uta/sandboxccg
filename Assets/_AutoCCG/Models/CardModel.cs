@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace AutoCCG
 {
@@ -14,5 +15,22 @@ namespace AutoCCG
         public int life;
 
         public int cost;
+
+        public bool ranged;
+
+        [Expandable]
+        public List<CardSkillModel> cardSkills;
+
+        public int GetDamage(bool isFrontLiner)
+        {
+            int damage = 0;
+
+            if(isFrontLiner || ranged)
+            {
+                damage = attack;
+            }
+
+            return damage;
+        }
     }
 }

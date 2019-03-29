@@ -12,6 +12,9 @@ namespace HutongGames.PlayMaker.Actions
             var playerModel = boardController.player.GetComponentInChildren<PlayerModel>();
             var enemyModel = boardController.enemy.GetComponentInChildren<PlayerModel>();
 
+            var playerBattlegrounds = boardController.player.GetComponentInChildren<BattlegroundsModel>();
+            var enemyBattlegrounds = boardController.enemy.GetComponentInChildren<BattlegroundsModel>();
+
             playerModel.RpcSendCardsToBattlegrounds();
             enemyModel.RpcSendCardsToBattlegrounds();
 

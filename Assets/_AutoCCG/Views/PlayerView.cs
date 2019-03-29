@@ -14,5 +14,7 @@ namespace AutoCCG
         public HandView handView;
 
         public BattlegroundsView battlegroundsView;
+
+        public TextMeshProUGUI playerNameText;
     }
 }

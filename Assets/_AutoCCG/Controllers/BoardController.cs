@@ -14,12 +14,6 @@ namespace AutoCCG
 
         public int startingGold;
 
-        public void CreateBattlegrounds()
-        {
-            player.GetComponentInChildren<HandController>().SendQueueToBattlegrounds();
-            enemy.GetComponentInChildren<HandController>().SendQueueToBattlegrounds();
-        }
-
         public void AddPlayer(GameObject playerObject)
         {
             var playerModel = playerObject.GetComponent<PlayerModel>();
@@ -30,14 +24,12 @@ namespace AutoCCG
             {
                 player = playerObject;
                 playerObject.name = "Player";
-                playerModel.playerName = "Player 1";
             }
             else if (!this.enemy)
             {
                 enemy = playerObject;
                 playerObject.name = "Enemy";
-                GetComponent<PlayMakerFSM>().SetState("Start Game");
-                playerModel.playerName = "Player 2";
+                GetComponent<PlayMakerFSM>().SetState("Create Game");
             }
             else
             {

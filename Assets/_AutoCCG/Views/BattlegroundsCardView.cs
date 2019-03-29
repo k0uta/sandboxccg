@@ -16,7 +16,7 @@ namespace AutoCCG
 
         public void UpdateView()
         {
-            cardView.cardLife.text = string.Format("Life\n{0}", battlegroundsCardModel.cardModel.life - battlegroundsCardModel.damageReceived);
+            cardView.SetCardLife(battlegroundsCardModel.cardModel.life - battlegroundsCardModel.damageReceived);
         }
     }
 }
