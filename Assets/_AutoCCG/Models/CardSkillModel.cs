@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace AutoCCG
@@ -19,9 +20,11 @@ namespace AutoCCG
         public string description;
 
         public CardSkillPhase phase;
-
+        
+        [Expandable]
         public List<CardConditionModel> conditions;
 
+        [Expandable]
         public List<CardEffectModel> effects;
 
         public bool CanBePerformed(BattlegroundsCardModel battlegroundsCard)
