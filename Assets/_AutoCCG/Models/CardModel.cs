@@ -18,6 +18,7 @@ namespace AutoCCG
 
         public bool ranged;
 
+        [Expandable]
         public List<CardSkillModel> cardSkills;
 
         public int GetDamage(bool isFrontLiner)
