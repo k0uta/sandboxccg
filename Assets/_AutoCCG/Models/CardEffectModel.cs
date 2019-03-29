@@ -2,22 +2,8 @@
 
 namespace AutoCCG
 {
-    public enum CardEffectTrigger
+    public abstract class CardEffectModel : ScriptableObject
     {
-        TurnStart,
-        CardDeath,
-        BattleOver,
-        CombatStart
-    }
-    [CreateAssetMenuAttribute(fileName = "Effect", menuName = "AutoCCG/Effect")]
-    public class CardEffectModel : ScriptableObject
-    {
-        public Sprite sprite;
-
-        public string description;
-
-        public CardEffectTrigger trigger;
-
-        
+        public abstract void Perform(BattlegroundsCardModel battlegroundsCard);
     }
 }

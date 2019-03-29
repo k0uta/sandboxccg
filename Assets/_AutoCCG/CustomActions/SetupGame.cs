@@ -3,7 +3,7 @@
 namespace HutongGames.PlayMaker.Actions
 {
     [ActionCategory("AutoCCG")]
-    public class SendCardsToBattlegrounds : FsmStateAction
+    public class SetupGame : FsmStateAction
     {
         // Code that runs on entering the state.
         public override void OnEnter()
@@ -12,11 +12,8 @@ namespace HutongGames.PlayMaker.Actions
             var playerModel = boardController.player.GetComponentInChildren<PlayerModel>();
             var enemyModel = boardController.enemy.GetComponentInChildren<PlayerModel>();
 
-            var playerBattlegrounds = boardController.player.GetComponentInChildren<BattlegroundsModel>();
-            var enemyBattlegrounds = boardController.enemy.GetComponentInChildren<BattlegroundsModel>();
-
-            playerModel.RpcSendCardsToBattlegrounds();
-            enemyModel.RpcSendCardsToBattlegrounds();
+            playerModel.RpcSyncBattlegrounds();
+            enemyModel.RpcSyncBattlegrounds();
 
             Finish();
         }
