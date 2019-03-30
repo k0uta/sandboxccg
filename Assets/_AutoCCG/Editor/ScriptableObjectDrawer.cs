@@ -1,5 +1,6 @@
 ﻿// https://forum.unity.com/threads/editor-tool-better-scriptableobject-inspector-editing.484393/
 using UnityEngine;
+using System.Reflection;
 
 #if UNITY_EDITOR
 using System;
@@ -97,7 +98,22 @@ public class ExpandableAttributeDrawer : PropertyDrawer
         Rect fieldRect = new Rect(position);
         fieldRect.height = EditorGUIUtility.singleLineHeight;
 
-        EditorGUI.PropertyField(fieldRect, property, label, true);
+        var newPosition = new Rect(position);
+        newPosition.xMin += EditorGUI.indentLevel * 14;
+
+        if (label != GUIContent.none)
+        {
+            GUI.Label(newPosition, label);
+
+            if (GUI.Button(newPosition, "", GUI.skin.GetStyle("IN ObjectField")))
+            {
+                typeof(EditorGUIUtility).GetMethod("ShowObjectPicker").MakeGenericMethod(GetPropertyFieldType(property)).Invoke(this, new object[] { null, false, string.Empty, 0 });
+            }
+        }
+        else
+        {
+            EditorGUI.PropertyField(fieldRect, property, label, true);
+        }
 
         if (property.objectReferenceValue == null)
             return;
@@ -207,6 +223,27 @@ public class ExpandableAttributeDrawer : PropertyDrawer
                 EditorGUI.DrawRect(rect, LIGHTEN_COLOUR);
                 break;
         }
+    }
+
+    static Type GetPropertyFieldType(SerializedProperty property)
+    {
+        Type parentType = property.serializedObject.targetObject.GetType();
+        foreach (var path in property.propertyPath.Split('.'))
+        {
+            var parentField = parentType.GetField(path);
+            if (parentField != null)
+            {
+                var fieldType = parentField.FieldType;
+                if (fieldType.IsGenericType && (fieldType.GetGenericTypeDefinition() == typeof(List<>)))
+                {
+                    fieldType = fieldType.GetTypeInfo().GenericTypeArguments[0];
+                }
+
+                return fieldType;
+            }
+        }
+
+        return null;
     }
 }
 #endif
