@@ -4,14 +4,6 @@ using UnityEngine;
 
 namespace AutoCCG
 {
-    public enum CardSkillPhase
-    {
-        Attack,
-        TurnStart,
-        CardDeath,
-        BattleOver,
-        CombatStart
-    }
     [CreateAssetMenuAttribute(fileName = "Skill", menuName = "AutoCCG/Skill")]
     public class CardSkillModel : ScriptableObject
     {
@@ -19,7 +11,7 @@ namespace AutoCCG
 
         public string description;
 
-        public CardSkillPhase phase;
+        public Phase phase;
         
         [Expandable]
         public List<CardConditionModel> conditions;

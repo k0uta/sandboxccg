@@ -8,7 +8,7 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("The board view")]
         public BoardView boardView;
 
-        public Phase phase;
+        public BoardPhase phase;
 
         public FsmInt phaseSeconds;
 

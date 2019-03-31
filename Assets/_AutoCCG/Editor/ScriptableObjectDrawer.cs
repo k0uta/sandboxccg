@@ -105,7 +105,10 @@ public class ExpandableAttributeDrawer : PropertyDrawer
         {
             GUI.Label(newPosition, label);
 
-            if (GUI.Button(newPosition, "", GUI.skin.GetStyle("IN ObjectField")))
+            var buttonRect = new Rect(newPosition);
+            buttonRect.height = 20f;
+
+            if (GUI.Button(buttonRect, "", GUI.skin.GetStyle("IN ObjectField")))
             {
                 typeof(EditorGUIUtility).GetMethod("ShowObjectPicker").MakeGenericMethod(GetPropertyFieldType(property)).Invoke(this, new object[] { null, false, string.Empty, 0 });
             }

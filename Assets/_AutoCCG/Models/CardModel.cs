@@ -16,21 +16,7 @@ namespace AutoCCG
 
         public int cost;
 
-        public bool ranged;
-
-        [Expandable]
+        
         public List<CardSkillModel> cardSkills;
-
-        public int GetDamage(bool isFrontLiner)
-        {
-            int damage = 0;
-
-            if(isFrontLiner || ranged)
-            {
-                damage = attack;
-            }
-
-            return damage;
-        }
     }
 }

@@ -22,6 +22,11 @@ namespace AutoCCG
             damageReceived += damage;
         }
 
+        public void HealDamage(int damage)
+        {
+            damageReceived -= damage;
+        }
+
         public bool IsDead()
         {
             return damageReceived >= cardModel.life;
@@ -38,7 +43,7 @@ namespace AutoCCG
             return targets;
         }
 
-        public void PerformSkillsForPhase(CardSkillPhase phase)
+        public void PerformSkillsForPhase(Phase phase)
         {
             var phaseSkills = cardModel.cardSkills.FindAll((cardSkill) => cardSkill.phase == phase);
 

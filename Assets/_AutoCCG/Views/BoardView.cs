@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace AutoCCG
 {
-    public enum Phase
+    public enum BoardPhase
     {
         Setup,
         Shop,
@@ -37,15 +37,15 @@ namespace AutoCCG
 
         public GameObject restockButton;
 
-        public Phase currentPhase;
+        public BoardPhase currentPhase;
 
         private void Start()
         {
-            SetPhase(Phase.Setup);
+            SetPhase(BoardPhase.Setup);
         }
 
         [ClientRpc]
-        public void RpcUpdateVariables(Phase phase, int phaseSeconds, int currentTurn, int maxTurns, string gameWinnerName)
+        public void RpcUpdateVariables(BoardPhase phase, int phaseSeconds, int currentTurn, int maxTurns, string gameWinnerName)
         {
             turnText.text = string.Format("Turn" + Environment.NewLine + "{0}/{1}", currentTurn, maxTurns);
             
@@ -59,17 +59,17 @@ namespace AutoCCG
             }
         }
 
-        void SetPhase(Phase phase)
+        void SetPhase(BoardPhase phase)
         {
             currentPhase = phase;
 
-            var phaseName = Enum.GetName(typeof(Phase), phase);
+            var phaseName = Enum.GetName(typeof(BoardPhase), phase);
             phaseNameText.text = string.Format("{0}" + Environment.NewLine + "Phase", phaseName);
 
-            var playerShopEnabled = currentPhase == Phase.Shop;
-            var playerHandEnabled = currentPhase == Phase.Shop || currentPhase == Phase.Strategy;
-            var restockButtonEnabled = currentPhase == Phase.Shop;
-            var gameOverAreaEnabled = currentPhase == Phase.GameOver;
+            var playerShopEnabled = currentPhase == BoardPhase.Shop;
+            var playerHandEnabled = currentPhase == BoardPhase.Shop || currentPhase == BoardPhase.Strategy;
+            var restockButtonEnabled = currentPhase == BoardPhase.Shop;
+            var gameOverAreaEnabled = currentPhase == BoardPhase.GameOver;
 
             playerShop.GetComponent<CanvasGroup>().interactable = playerShopEnabled;
             playerHand.GetComponent<CanvasGroup>().interactable = playerHandEnabled;

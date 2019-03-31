@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
   m_Name: MeleeAttack
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d8ebd3cf13a4cf24f8de0dd6be5697e9, type: 3}
+  sprite: {fileID: 21300000, guid: adebdd821625854409992d7da1aeb965, type: 3}
   description: 
   phase: 0
   conditions:

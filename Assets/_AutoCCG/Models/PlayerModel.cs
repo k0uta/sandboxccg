@@ -224,7 +224,7 @@ namespace AutoCCG
         }
 
         [ClientRpc]
-        public void RpcPerformBattlegroundsPhaseSkills(CardSkillPhase phase)
+        public void RpcPerformBattlegroundsPhaseSkills(Phase phase)
         {
             var battlegroundsCards = battlegroundsModel.battlegroundsCards;
             foreach (var card in battlegroundsCards)

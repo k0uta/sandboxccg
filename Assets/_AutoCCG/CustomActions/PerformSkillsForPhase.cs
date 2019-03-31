@@ -5,7 +5,7 @@ namespace HutongGames.PlayMaker.Actions
     [ActionCategory("AutoCCG")]
     public class PerformSkillsForPhase : FsmStateAction
     {
-        public CardSkillPhase phase;
+        public Phase phase;
 
         // Code that runs on entering the state.
         public override void OnEnter()
