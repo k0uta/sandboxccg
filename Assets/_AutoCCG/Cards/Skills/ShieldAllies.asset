@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1643136b14de6a2409d9387f9389bea1, type: 3}
-  m_Name: PoisonArea
+  m_Name: ShieldAllies
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: e9ffd588587ef14479ef45f62f33a168, type: 3}
+  sprite: {fileID: 21300000, guid: a8ae577468b40d24b95b7d0b914e7e1b, type: 3}
   description: 
-  phase: 0
+  phase: 2
   conditions: []
   effects:
-  - {fileID: 114188064745339336}
+  - {fileID: 114124856640456478}
   manaCost: 3
---- !u!114 &114188064745339336
+--- !u!114 &114124856640456478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72e07cdc78702f41aa9c4b78cb96046, type: 3}
   m_Name: '(Effect) AddTokenSkillToArea '
   m_EditorClassIdentifier: 
-  tokenSkill: {fileID: 11400000, guid: 29ddc2cd2a4ec1546a4a528ee077cfec, type: 2}
+  tokenSkill: {fileID: 11400000, guid: cf926fdf8a3419d49b05e0d71ad20084, type: 2}
   area: 2
-  targetPlayer: 1
-  tokenAmount: 2
+  targetPlayer: 0
+  tokenAmount: 1

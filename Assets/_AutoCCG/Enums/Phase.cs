@@ -2,6 +2,8 @@
 {
     public enum Phase
     {
-        Attack
+        CombatTurnAttack,
+        CombatTurnStart,
+        CombatTurnEnd
     }
 }

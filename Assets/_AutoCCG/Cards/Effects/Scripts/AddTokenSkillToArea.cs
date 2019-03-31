@@ -9,12 +9,15 @@ namespace AutoCCG
 
         public Area area;
 
+        public TargetPlayer targetPlayer;
+
         public int tokenAmount;
 
         public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
         {
             var effectActions = new List<CardActionModel>();
-            var areaCards = battlegroundsCard.playerBattlegrounds.enemyBattlegrounds.GetArea(area);
+
+            var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area, targetPlayer);
 
             foreach (var card in areaCards)
             {
@@ -30,7 +33,7 @@ namespace AutoCCG
             var cardTokenSkill = (CardTokenSkillModel)targetCard.cardModel.cardSkills.Find(FindCardTokenSkill);
             if (cardTokenSkill)
             {
-                cardTokenSkill.count+= tokenAmount;
+                cardTokenSkill.count += tokenAmount;
             }
             else
             {

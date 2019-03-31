@@ -23,3 +23,5 @@ MonoBehaviour:
     quantity: 0
   - card: {fileID: 11400000, guid: 830362b367b00f6459fa8d40662bf929, type: 2}
     quantity: 10
+  - card: {fileID: 11400000, guid: f1d40331d05ca6d47a62be00a9dc8e83, type: 2}
+    quantity: 10

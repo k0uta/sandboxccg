@@ -56,5 +56,18 @@ namespace AutoCCG
                     throw new KeyNotFoundException();
             }
         }
+
+        public List<BattlegroundsCardModel> GetArea(Area area, TargetPlayer targetPlayer)
+        {
+            switch (targetPlayer)
+            {
+                case TargetPlayer.Player:
+                    return GetArea(area);
+                case TargetPlayer.Enemy:
+                    return enemyBattlegrounds.GetArea(area);
+                default:
+                    throw new KeyNotFoundException();
+            }
+        }
     }
 }

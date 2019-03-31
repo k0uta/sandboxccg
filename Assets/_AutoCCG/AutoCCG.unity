@@ -395,7 +395,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemy: {fileID: 0}
   startingHealth: 20
-  startingGold: 0
+  startingGold: 20
 --- !u!4 &296361396
 Transform:
   m_ObjectHideFlags: 0
@@ -540,14 +540,14 @@ MonoBehaviour:
         paramName: []
         paramDataPos: 
         paramByteDataSize: 
-    - name: Turn Start
+    - name: Combat Turn Start
       description: 
       colorIndex: 6
       position:
         serializedVersion: 2
         x: 780.96875
         y: 300.25
-        width: 100
+        width: 151
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -557,17 +557,19 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Attack Phase
+        toState: Combat Turn Attack
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
       actionData:
-        actionNames: []
-        customNames: []
-        actionEnabled: 
-        actionIsOpen: 
-        actionStartIndex: 
-        actionHashCodes: 
+        actionNames:
+        - HutongGames.PlayMaker.Actions.PerformSkillsForPhase
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 291d1702
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -591,23 +593,24 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 01000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 
-        paramName: []
-        paramDataPos: 
-        paramByteDataSize: 
-    - name: Attack Phase
+        paramDataType: 07000000
+        paramName:
+        - phase
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
+    - name: Combat Turn Attack
       description: 
       colorIndex: 6
       position:
         serializedVersion: 2
         x: 763.8906
         y: 365.1875
-        width: 116
+        width: 160
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -752,7 +755,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Battle Winner Check
+        toState: Combat Turn End
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -834,7 +837,7 @@ MonoBehaviour:
           name: Battle Loop
           isSystemEvent: 0
           isGlobal: 0
-        toState: Turn Start
+        toState: Combat Turn Start
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -2010,6 +2013,69 @@ MonoBehaviour:
         paramName: []
         paramDataPos: 
         paramByteDataSize: 
+    - name: Combat Turn End
+      description: 
+      colorIndex: 6
+      position:
+        serializedVersion: 2
+        x: 738.65625
+        y: 468.5547
+        width: 142
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Battle Winner Check
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.PerformSkillsForPhase
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 291d1702
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 02000000
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 07000000
+        paramName:
+        - phase
+        paramDataPos: 00000000
+        paramByteDataSize: 04000000
     events:
     - name: FINISHED
       isSystemEvent: 1

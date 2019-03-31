@@ -16,6 +16,8 @@ namespace AutoCCG
 
         public List<CardActionModel> actionQueue = new List<CardActionModel>();
 
+        public List<Func<int, int>> damageFormulas = new List<Func<int, int>>();
+
         public BattlegroundsCardModel(CardModel cardModel)
         {
             this.cardModel = cardModel;
@@ -25,12 +27,19 @@ namespace AutoCCG
 
         public void ApplyDamage(int damage)
         {
-            damageReceived += damage;
+            int totalDamage = damage;
+
+            foreach (var damageFormula in damageFormulas)
+            {
+                totalDamage = damageFormula(totalDamage);
+            }
+
+            damageReceived += totalDamage;
         }
 
-        public void HealDamage(int damage)
+        public void HealDamage(int healAmount)
         {
-            damageReceived -= damage;
+            damageReceived -= healAmount;
             if (damageReceived < 0)
             {
                 damageReceived = 0;
