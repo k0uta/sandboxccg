@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AutoCCG
 {
@@ -13,8 +12,6 @@ namespace AutoCCG
         public int currentMana;
 
         public BattlegroundsModel playerBattlegrounds;
-
-        public List<CardActionModel> actionQueue = new List<CardActionModel>();
 
         public List<Func<int, int>> damageFormulas = new List<Func<int, int>>();
 
@@ -54,7 +51,7 @@ namespace AutoCCG
         public List<BattlegroundsCardModel> GetTargets(Target target)
         {
             var targets = new List<BattlegroundsCardModel>();
-            if(target == Target.Self)
+            if (target == Target.Self)
             {
                 targets.Add(this);
             }
@@ -69,22 +66,11 @@ namespace AutoCCG
             // TODO: Should trigger all? Maybe add priority?
             foreach (var skill in phaseSkills)
             {
-                if(skill.CanBePerformed(this))
+                if (skill.CanBePerformed(this))
                 {
                     var skillActions = skill.CreateSkillActions(this);
-                    actionQueue.AddRange(skillActions);
+                    ActionStackModel.GetInstance().actionQueue.AddRange(skillActions);
                 }
-            }
-        }
-
-        public void PerformPhaseActionQueue(Phase phase)
-        {
-            var phaseActionsQueue = actionQueue.FindAll((cardAction) => cardAction.phase == phase);
-
-            foreach (var cardAction in phaseActionsQueue)
-            {
-                cardAction.PerformAction();
-                actionQueue.Remove(cardAction);
             }
         }
     }

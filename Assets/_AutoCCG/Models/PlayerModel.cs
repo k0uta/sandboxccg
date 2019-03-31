@@ -231,18 +231,17 @@ namespace AutoCCG
             {
                 card.PerformSkillsForPhase(phase);
                 // TODO: Move to some place mana regen?
-                card.currentMana++;
+                if (phase == Phase.CombatTurnEnd)
+                {
+                    card.currentMana++;
+                }
             }
         }
 
         [ClientRpc]
         public void RpcPerformBattlegroundsPhaseActions(Phase phase)
         {
-            var battlegroundsCards = battlegroundsModel.battlegroundsCards;
-            foreach (var card in battlegroundsCards)
-            {
-                card.PerformPhaseActionQueue(phase);
-            }
+            ActionStackModel.GetInstance().PerformPhaseActionQueue(phase);
 
             battlegroundsModel.battlegroundsView.UpdateCardsView();
             battlegroundsModel.enemyBattlegrounds.battlegroundsView.UpdateCardsView();

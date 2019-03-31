@@ -20,19 +20,26 @@ namespace AutoCCG
 
         public int count;
 
+        public override bool CanBePerformed(BattlegroundsCardModel battlegroundsCard)
+        {
+            return count > 0 && base.CanBePerformed(battlegroundsCard);
+        }
+
         public override List<CardActionModel> CreateSkillActions(BattlegroundsCardModel battlegroundsCard)
         {
             var skillActions = base.CreateSkillActions(battlegroundsCard);
 
-            var countDecreaseAction = new CardActionModel(phase, () => DecreaseCountAction(battlegroundsCard));
+            var countDecreaseAction = new CardActionModel(phase, () => count--);
             skillActions.Add(countDecreaseAction);
+
+            var checkForRemovalAction = new CardActionModel(Phase.CombatTurnEnd, () => CheckForRemoval(battlegroundsCard));
+            skillActions.Add(checkForRemovalAction);
 
             return skillActions;
         }
 
-        void DecreaseCountAction(BattlegroundsCardModel battlegroundsCard)
+        void CheckForRemoval(BattlegroundsCardModel battlegroundsCard)
         {
-            count--;
             if (count <= 0)
             {
                 battlegroundsCard.cardModel.cardSkills.Remove(this);

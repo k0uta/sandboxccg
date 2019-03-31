@@ -23,6 +23,12 @@ public class SkillEditor : Editor
             EditorGUILayout.PropertyField(manaCost);
         }
 
+        var count = serializedObject.FindProperty("count");
+        if (count != null)
+        {
+            EditorGUILayout.PropertyField(count);
+        }
+
         CreateDynamicPropertyList<CardConditionModel>("conditions", "Condition");
 
         CreateDynamicPropertyList<CardEffectModel>("effects", "Effect");

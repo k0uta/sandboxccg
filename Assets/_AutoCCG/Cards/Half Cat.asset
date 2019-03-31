@@ -17,6 +17,6 @@ MonoBehaviour:
   attack: 10
   life: 3
   mana: 10
-  cost: 2
+  cost: 3
   cardSkills:
   - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}

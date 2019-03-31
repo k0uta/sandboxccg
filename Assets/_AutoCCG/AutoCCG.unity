@@ -395,7 +395,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemy: {fileID: 0}
   startingHealth: 20
-  startingGold: 20
+  startingGold: 0
 --- !u!4 &296361396
 Transform:
   m_ObjectHideFlags: 0

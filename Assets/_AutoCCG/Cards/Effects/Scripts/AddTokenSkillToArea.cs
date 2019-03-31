@@ -21,14 +21,14 @@ namespace AutoCCG
 
             foreach (var card in areaCards)
             {
-                var skillAction = new CardActionModel(phase, () => AddCardTokenSkill(card));
+                var skillAction = new CardActionModel(phase, () => AddCardTokenSkill(card, phase));
                 effectActions.Add(skillAction);
             }
 
             return effectActions;
         }
 
-        void AddCardTokenSkill(BattlegroundsCardModel targetCard)
+        void AddCardTokenSkill(BattlegroundsCardModel targetCard, Phase phase)
         {
             var cardTokenSkill = (CardTokenSkillModel)targetCard.cardModel.cardSkills.Find(FindCardTokenSkill);
             if (cardTokenSkill)
@@ -41,6 +41,10 @@ namespace AutoCCG
                 newTokenSkill.count = tokenAmount;
                 newTokenSkill.SetBaseSkill(tokenSkill);
                 targetCard.cardModel.cardSkills.Add(newTokenSkill);
+                if (phase == newTokenSkill.phase)
+                {
+                    ActionStackModel.GetInstance().actionQueue.AddRange(newTokenSkill.CreateSkillActions(targetCard));
+                }
             }
         }
 
