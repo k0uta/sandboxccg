@@ -14,6 +14,8 @@ namespace AutoCCG
 
         public int life;
 
+        public int mana;
+
         public int cost;
         
         public List<CardSkillModel> cardSkills;

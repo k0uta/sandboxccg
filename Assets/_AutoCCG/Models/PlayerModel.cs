@@ -230,10 +230,9 @@ namespace AutoCCG
             foreach (var card in battlegroundsCards)
             {
                 card.PerformSkillsForPhase(phase);
+                // TODO: Move to some place mana regen?
+                card.currentMana++;
             }
-
-            battlegroundsModel.battlegroundsView.UpdateCardsView();
-            battlegroundsModel.enemyBattlegrounds.battlegroundsView.UpdateCardsView();
         }
 
         [ClientRpc]

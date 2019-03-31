@@ -44,12 +44,17 @@ namespace AutoCCG
 
         public List<BattlegroundsCardModel> GetArea(Area area)
         {
-            if (area == Area.Frontline)
+            switch (area)
             {
-                return battlegroundsCards.GetRange(0, 1);
+                case Area.Frontline:
+                    return battlegroundsCards.GetRange(0, 1);
+                case Area.Backline:
+                    return battlegroundsCards.GetRange(1, battlegroundsCards.Count - 1);
+                case Area.Battlegrounds:
+                    return battlegroundsCards;
+                default:
+                    throw new KeyNotFoundException();
             }
-
-            throw new KeyNotFoundException();
         }
     }
 }

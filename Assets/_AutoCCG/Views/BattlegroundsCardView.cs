@@ -12,11 +12,13 @@ namespace AutoCCG
         {
             this.battlegroundsCardModel = battlegroundsCardModel;
             cardView.SetCard(battlegroundsCardModel.cardModel);
+            UpdateView();
         }
 
         public void UpdateView()
         {
             cardView.SetCardLife(battlegroundsCardModel.cardModel.life - battlegroundsCardModel.damageReceived);
+            cardView.SetCardMana(battlegroundsCardModel.currentMana);
             cardView.UpdateCardSkills();
         }
     }

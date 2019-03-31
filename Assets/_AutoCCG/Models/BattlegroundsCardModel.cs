@@ -20,6 +20,7 @@ namespace AutoCCG
         {
             this.cardModel = cardModel;
             damageReceived = 0;
+            currentMana = 0;
         }
 
         public void ApplyDamage(int damage)

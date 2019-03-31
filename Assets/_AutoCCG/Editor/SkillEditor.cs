@@ -17,6 +17,12 @@ public class SkillEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("description"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("phase"));
 
+        var manaCost = serializedObject.FindProperty("manaCost");
+        if (manaCost != null)
+        {
+            EditorGUILayout.PropertyField(manaCost);
+        }
+
         CreateDynamicPropertyList<CardConditionModel>("conditions", "Condition");
 
         CreateDynamicPropertyList<CardEffectModel>("effects", "Effect");

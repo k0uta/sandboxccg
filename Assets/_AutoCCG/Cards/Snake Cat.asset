@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Snake Cat
   sprite: {fileID: 21300000, guid: 7ee55a7ddd49c8f4d92423c3768f53d1, type: 3}
-  attack: 1
-  life: 1
+  attack: 0
+  life: 20
+  mana: 3
   cost: 1
   cardSkills:
-  - {fileID: 11400000, guid: 0f9fb48f8a55f9e458bf26cee215608c, type: 2}
+  - {fileID: 11400000, guid: 50be0964838e4634092e08794d36e57b, type: 2}

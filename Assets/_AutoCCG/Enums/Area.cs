@@ -3,6 +3,7 @@
     public enum Area
     {
         Frontline,
-        Backline
+        Backline,
+        Battlegrounds
     }
 }

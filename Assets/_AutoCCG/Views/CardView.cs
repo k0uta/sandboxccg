@@ -16,9 +16,13 @@ namespace AutoCCG
 
         public TextMeshProUGUI cardLife;
 
+        public TextMeshProUGUI cardMana;
+
         public TextMeshProUGUI cardCost;
 
         public Slider cardLifeSlider;
+
+        public Slider cardManaSlider;
 
         public Transform skillsArea;
 
@@ -50,6 +54,7 @@ namespace AutoCCG
             UpdateCardSkills();
 
             SetCardLife(cardModel.life);
+            SetCardMana(cardModel.mana);
         }
 
         public void UpdateCardSkills()
@@ -74,6 +79,12 @@ namespace AutoCCG
         {
             cardLife.text = string.Format("{0}/{1}", currentLife, cardModel.life);
             cardLifeSlider.value = (float)currentLife / (float)cardModel.life;
+        }
+
+        public void SetCardMana(int currentMana)
+        {
+            cardMana.text = string.Format("{0}/{1}", currentMana, cardModel.mana);
+            cardManaSlider.value = (float)currentMana / (float)cardModel.mana;
         }
     }
 

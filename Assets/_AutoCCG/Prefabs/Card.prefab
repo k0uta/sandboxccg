@@ -777,8 +777,10 @@ MonoBehaviour:
   cardTitle: {fileID: 5187494401285636415}
   cardAttack: {fileID: 5187494401233279785}
   cardLife: {fileID: 5187494400239195293}
+  cardMana: {fileID: 8844760403166980688}
   cardCost: {fileID: 5187494399921972223}
   cardLifeSlider: {fileID: 7415413548620487433}
+  cardManaSlider: {fileID: 4126683691256422334}
   skillsArea: {fileID: 3434294033913823350}
 --- !u!1 &5187494400132500597
 GameObject:
@@ -1626,9 +1628,9 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 1
 --- !u!1 &7158396699878393249
 GameObject:

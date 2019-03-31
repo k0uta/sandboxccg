@@ -5,10 +5,11 @@ namespace AutoCCG
 {
     public class AddTokenSkillToArea : CardEffectModel
     {
-        [Expandable]
         public CardSkillModel tokenSkill;
 
         public Area area;
+
+        public int tokenAmount;
 
         public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
         {
@@ -29,12 +30,12 @@ namespace AutoCCG
             var cardTokenSkill = (CardTokenSkillModel)targetCard.cardModel.cardSkills.Find(FindCardTokenSkill);
             if (cardTokenSkill)
             {
-                cardTokenSkill.count++;
+                cardTokenSkill.count+= tokenAmount;
             }
             else
             {
                 var newTokenSkill = ScriptableObject.CreateInstance(typeof(CardTokenSkillModel)) as CardTokenSkillModel;
-                newTokenSkill.count += 3;
+                newTokenSkill.count = tokenAmount;
                 newTokenSkill.SetBaseSkill(tokenSkill);
                 targetCard.cardModel.cardSkills.Add(newTokenSkill);
             }

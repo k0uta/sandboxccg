@@ -16,7 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 239c8e27f1046db44847edfe51c466c2, type: 3}
   attack: 2
   life: 2
+  mana: 5
   cost: 1
-  ranged: 1
   cardSkills:
   - {fileID: 11400000, guid: e4945821dc9df014bbb2c7e8c26eb149, type: 2}
