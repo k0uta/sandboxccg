@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AutoCCG
 {
-    [CreateAssetMenuAttribute(fileName = "Skill", menuName = "AutoCCG/Skill")]
+    //[CreateAssetMenuAttribute(fileName = "Skill", menuName = "AutoCCG/Skill")]
     public class CardSkillModel : ScriptableObject
     {
         public Sprite sprite;

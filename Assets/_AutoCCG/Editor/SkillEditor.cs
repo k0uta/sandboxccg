@@ -1,7 +1,9 @@
 ﻿#if UNITY_EDITOR
 using AutoCCG;
+using Mobcast.CoffeeEditor.SubAssetEditor;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -176,6 +178,53 @@ public class SkillEditor : Editor
                 return type;
         }
         return null;
+    }
+
+    [MenuItem("Assets/Create/AutoCCG/Skill")]
+    public static void CreateSkillObject()
+    {
+        CreateSkillAsset<CardSkillModel>("Skill");
+    }
+
+    [MenuItem("Assets/Create/AutoCCG/Mana Skill")]
+    public static void CreateManaSkillObject()
+    {
+        CreateSkillAsset<CardManaSkillModel>("Mana Skill");
+    }
+
+    static void CreateSkillAsset<T>(string objectName)
+    {
+        var selectionObject = Selection.activeObject;
+        var selectionCard = selectionObject as CardModel;
+
+        var newObject = Activator.CreateInstance(typeof(T)) as UnityEngine.Object;
+        newObject.name = objectName;
+
+
+        if (selectionCard != null)
+        {
+            AssetDatabase.AddObjectToAsset(newObject, AssetDatabase.GetAssetPath(selectionCard));
+            AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(newObject));
+        }
+        else
+        {
+            var assetPath = AssetDatabase.GetAssetPath(selectionObject);
+
+            if (File.Exists(assetPath))
+            {
+                assetPath = Path.GetDirectoryName(assetPath);
+            }
+
+            assetPath = Path.Combine(assetPath, string.Format("{0}.asset", objectName));
+            ProjectWindowUtil.CreateAsset(newObject, assetPath);
+        }
+        AssetDatabase.Refresh();
+
+        var subAssetEditors = Resources.FindObjectsOfTypeAll<SubAssetEditor>();
+        foreach (var subAssetEditor in subAssetEditors)
+        {
+            subAssetEditor.ForceReload();
+        }
     }
 }
 #endif

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AutoCCG
 {
-    [CreateAssetMenuAttribute(fileName = "Mana Skill", menuName = "AutoCCG/Mana Skill")]
+    //[CreateAssetMenuAttribute(fileName = "Mana Skill", menuName = "AutoCCG/Mana Skill")]
     public class CardManaSkillModel : CardSkillModel
     {
         public int manaCost;
