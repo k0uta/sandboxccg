@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace AutoCCG
 {
@@ -7,15 +8,20 @@ namespace AutoCCG
     {
         public Area area;
 
-        public override void Perform(BattlegroundsCardModel battlegroundsCard)
+        public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
         {
             var areaCards = battlegroundsCard.playerBattlegrounds.enemyBattlegrounds.GetArea(area);
             var damage = battlegroundsCard.cardModel.attack;
 
+            var effectActions = new List<CardActionModel>();
+
             foreach (var card in areaCards)
             {
-                battlegroundsCard.actionQueue.Add(() => card.ApplyDamage(damage));
+                var damageAction = new CardActionModel(phase, () => card.ApplyDamage(damage));
+                effectActions.Add(damageAction);
             }
+
+            return effectActions;
         }
     }
 }

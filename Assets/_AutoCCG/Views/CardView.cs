@@ -47,12 +47,12 @@ namespace AutoCCG
             cardAttack.text = string.Format("{0}", cardModel.attack);
             cardCost.text = string.Format("{0}g", cardModel.cost);
 
-            SetCardSkills();
+            UpdateCardSkills();
 
             SetCardLife(cardModel.life);
         }
 
-        public void SetCardSkills()
+        public void UpdateCardSkills()
         {
             for (int i = skillsArea.childCount - 1; i >= 0; i--)
             {

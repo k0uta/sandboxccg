@@ -224,7 +224,7 @@ namespace AutoCCG
         }
 
         [ClientRpc]
-        public void RpcPerformBattlegroundsPhaseSkills(Phase phase)
+        public void RpcCreateBattlegroundsPhaseActions(Phase phase)
         {
             var battlegroundsCards = battlegroundsModel.battlegroundsCards;
             foreach (var card in battlegroundsCards)
@@ -237,12 +237,12 @@ namespace AutoCCG
         }
 
         [ClientRpc]
-        public void RpcExecuteBattlegroundsActionQueue()
+        public void RpcPerformBattlegroundsPhaseActions(Phase phase)
         {
             var battlegroundsCards = battlegroundsModel.battlegroundsCards;
             foreach (var card in battlegroundsCards)
             {
-                card.PerformActionQueue();
+                card.PerformPhaseActionQueue(phase);
             }
 
             battlegroundsModel.battlegroundsView.UpdateCardsView();

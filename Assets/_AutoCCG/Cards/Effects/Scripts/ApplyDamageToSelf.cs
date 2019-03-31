@@ -1,12 +1,19 @@
-﻿namespace AutoCCG
+﻿using System.Collections.Generic;
+
+namespace AutoCCG
 {
     public class ApplyDamageToSelf : CardEffectModel
     {
         public int amount;
 
-        public override void Perform(BattlegroundsCardModel battlegroundsCard)
+        public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
         {
-            battlegroundsCard.actionQueue.Add(() => battlegroundsCard.ApplyDamage(amount));
+            var effectActions = new List<CardActionModel>();
+
+            var selfDamageAction = new CardActionModel(phase, () => battlegroundsCard.ApplyDamage(amount));
+            effectActions.Add(selfDamageAction);
+
+            return effectActions;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace AutoCCG
+﻿using System.Collections.Generic;
+
+namespace AutoCCG
 {
     public class CardTokenSkillModel : CardSkillModel
     {
@@ -18,10 +20,23 @@
 
         public int count;
 
-        public override void PerformSkill(BattlegroundsCardModel battlegroundsCard)
+        public override List<CardActionModel> CreateSkillActions(BattlegroundsCardModel battlegroundsCard)
         {
-            base.PerformSkill(battlegroundsCard);
+            var skillActions = base.CreateSkillActions(battlegroundsCard);
+
+            var countDecreaseAction = new CardActionModel(phase, () => DecreaseCountAction(battlegroundsCard));
+            skillActions.Add(countDecreaseAction);
+
+            return skillActions;
+        }
+
+        void DecreaseCountAction(BattlegroundsCardModel battlegroundsCard)
+        {
             count--;
+            if (count <= 0)
+            {
+                battlegroundsCard.cardModel.cardSkills.Remove(this);
+            }
         }
     }
 }

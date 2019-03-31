@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace AutoCCG
@@ -12,7 +11,7 @@ namespace AutoCCG
         public string description;
 
         public Phase phase;
-        
+
         [Expandable]
         public List<CardConditionModel> conditions;
 
@@ -32,12 +31,15 @@ namespace AutoCCG
             return true;
         }
 
-        public virtual void PerformSkill(BattlegroundsCardModel battlegroundsCard)
+        public virtual List<CardActionModel> CreateSkillActions(BattlegroundsCardModel battlegroundsCard)
         {
+            List<CardActionModel> skillActions = new List<CardActionModel>();
             foreach (var effect in effects)
             {
-                effect.Perform(battlegroundsCard);
+                skillActions.AddRange(effect.CreateActions(battlegroundsCard, phase));
             }
+
+            return skillActions;
         }
     }
 }

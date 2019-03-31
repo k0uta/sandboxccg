@@ -10,9 +10,11 @@ namespace AutoCCG
 
         public int damageReceived;
 
+        public int currentMana;
+
         public BattlegroundsModel playerBattlegrounds;
 
-        public List<Action> actionQueue = new List<Action>();
+        public List<CardActionModel> actionQueue = new List<CardActionModel>();
 
         public BattlegroundsCardModel(CardModel cardModel)
         {
@@ -59,25 +61,21 @@ namespace AutoCCG
             {
                 if(skill.CanBePerformed(this))
                 {
-                    skill.PerformSkill(this);
-
-                    var tokenSkill = skill as CardTokenSkillModel;
-                    if (tokenSkill != null && tokenSkill.count <= 0)
-                    {
-                        cardModel.cardSkills.Remove(skill);
-                    }
+                    var skillActions = skill.CreateSkillActions(this);
+                    actionQueue.AddRange(skillActions);
                 }
             }
         }
 
-        public void PerformActionQueue()
+        public void PerformPhaseActionQueue(Phase phase)
         {
-            foreach (var action in actionQueue)
-            {
-                action();
-            }
+            var phaseActionsQueue = actionQueue.FindAll((cardAction) => cardAction.phase == phase);
 
-            actionQueue.Clear();
+            foreach (var cardAction in phaseActionsQueue)
+            {
+                cardAction.PerformAction();
+                actionQueue.Remove(cardAction);
+            }
         }
     }
 }

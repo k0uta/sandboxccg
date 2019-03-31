@@ -17,7 +17,7 @@ namespace AutoCCG
         public void UpdateView()
         {
             cardView.SetCardLife(battlegroundsCardModel.cardModel.life - battlegroundsCardModel.damageReceived);
-            cardView.SetCardSkills();
+            cardView.UpdateCardSkills();
         }
     }
 }

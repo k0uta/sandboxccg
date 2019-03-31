@@ -15,11 +15,11 @@ namespace HutongGames.PlayMaker.Actions
             var playerModel = boardController.player.GetComponent<PlayerModel>();
             var enemyModel = boardController.enemy.GetComponent<PlayerModel>();
 
-            playerModel.RpcPerformBattlegroundsPhaseSkills(phase);
-            enemyModel.RpcPerformBattlegroundsPhaseSkills(phase);
+            playerModel.RpcCreateBattlegroundsPhaseActions(phase);
+            enemyModel.RpcCreateBattlegroundsPhaseActions(phase);
 
-            playerModel.RpcExecuteBattlegroundsActionQueue();
-            enemyModel.RpcExecuteBattlegroundsActionQueue();
+            playerModel.RpcPerformBattlegroundsPhaseActions(phase);
+            enemyModel.RpcPerformBattlegroundsPhaseActions(phase);
 
             Finish();
         }
