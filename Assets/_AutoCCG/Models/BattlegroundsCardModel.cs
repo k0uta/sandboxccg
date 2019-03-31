@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AutoCCG
@@ -10,6 +11,8 @@ namespace AutoCCG
         public int damageReceived;
 
         public BattlegroundsModel playerBattlegrounds;
+
+        public List<Action> actionQueue = new List<Action>();
 
         public BattlegroundsCardModel(CardModel cardModel)
         {
@@ -25,6 +28,10 @@ namespace AutoCCG
         public void HealDamage(int damage)
         {
             damageReceived -= damage;
+            if (damageReceived < 0)
+            {
+                damageReceived = 0;
+            }
         }
 
         public bool IsDead()
@@ -53,8 +60,24 @@ namespace AutoCCG
                 if(skill.CanBePerformed(this))
                 {
                     skill.PerformSkill(this);
+
+                    var tokenSkill = skill as CardTokenSkillModel;
+                    if (tokenSkill != null && tokenSkill.count <= 0)
+                    {
+                        cardModel.cardSkills.Remove(skill);
+                    }
                 }
             }
+        }
+
+        public void PerformActionQueue()
+        {
+            foreach (var action in actionQueue)
+            {
+                action();
+            }
+
+            actionQueue.Clear();
         }
     }
 }

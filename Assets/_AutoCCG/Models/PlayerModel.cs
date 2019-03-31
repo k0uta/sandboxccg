@@ -237,6 +237,19 @@ namespace AutoCCG
         }
 
         [ClientRpc]
+        public void RpcExecuteBattlegroundsActionQueue()
+        {
+            var battlegroundsCards = battlegroundsModel.battlegroundsCards;
+            foreach (var card in battlegroundsCards)
+            {
+                card.PerformActionQueue();
+            }
+
+            battlegroundsModel.battlegroundsView.UpdateCardsView();
+            battlegroundsModel.enemyBattlegrounds.battlegroundsView.UpdateCardsView();
+        }
+
+        [ClientRpc]
         public void RpcSyncBattlegrounds()
         {
             if (isLocalPlayer)

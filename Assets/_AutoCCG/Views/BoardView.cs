@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace AutoCCG
@@ -42,6 +43,11 @@ namespace AutoCCG
         private void Start()
         {
             SetPhase(BoardPhase.Setup);
+        }
+
+        public void ResetGame()
+        {
+            SceneManager.LoadScene("_AutoCCG/MainScene");
         }
 
         [ClientRpc]

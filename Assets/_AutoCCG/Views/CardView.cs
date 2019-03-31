@@ -52,7 +52,7 @@ namespace AutoCCG
             SetCardLife(cardModel.life);
         }
 
-        void SetCardSkills()
+        public void SetCardSkills()
         {
             for (int i = skillsArea.childCount - 1; i >= 0; i--)
             {

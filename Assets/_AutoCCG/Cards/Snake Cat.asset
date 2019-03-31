@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
-  m_Name: Regular Cat
+  m_Name: Snake Cat
   m_EditorClassIdentifier: 
-  title: Regular Cat
-  sprite: {fileID: 21300000, guid: b6a6681776c606345b7676bb15a56256, type: 3}
-  attack: 2
-  life: 7
+  title: Snake Cat
+  sprite: {fileID: 21300000, guid: 7ee55a7ddd49c8f4d92423c3768f53d1, type: 3}
+  attack: 1
+  life: 1
   cost: 1
   cardSkills:
-  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
+  - {fileID: 11400000, guid: 0f9fb48f8a55f9e458bf26cee215608c, type: 2}

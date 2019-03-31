@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace AutoCCG
+﻿namespace AutoCCG
 {
     public class HealArea : CardEffectModel
     {
@@ -14,7 +12,7 @@ namespace AutoCCG
 
             foreach (var card in areaCards)
             {
-                card.HealDamage(amount);
+                battlegroundsCard.actionQueue.Add(() => card.HealDamage(amount));
             }
         }
     }

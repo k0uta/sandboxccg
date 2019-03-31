@@ -18,6 +18,9 @@ namespace HutongGames.PlayMaker.Actions
             playerModel.RpcPerformBattlegroundsPhaseSkills(phase);
             enemyModel.RpcPerformBattlegroundsPhaseSkills(phase);
 
+            playerModel.RpcExecuteBattlegroundsActionQueue();
+            enemyModel.RpcExecuteBattlegroundsActionQueue();
+
             Finish();
         }
     }

@@ -19,7 +19,7 @@ namespace AutoCCG
         [Expandable]
         public List<CardEffectModel> effects;
 
-        public bool CanBePerformed(BattlegroundsCardModel battlegroundsCard)
+        public virtual bool CanBePerformed(BattlegroundsCardModel battlegroundsCard)
         {
             foreach (var condition in conditions)
             {
@@ -32,7 +32,7 @@ namespace AutoCCG
             return true;
         }
 
-        public void PerformSkill(BattlegroundsCardModel battlegroundsCard)
+        public virtual void PerformSkill(BattlegroundsCardModel battlegroundsCard)
         {
             foreach (var effect in effects)
             {

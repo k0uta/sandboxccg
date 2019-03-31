@@ -14,7 +14,7 @@ namespace AutoCCG
 
             foreach (var card in areaCards)
             {
-                card.ApplyDamage(damage);
+                battlegroundsCard.actionQueue.Add(() => card.ApplyDamage(damage));
             }
         }
     }
