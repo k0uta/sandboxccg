@@ -26,16 +26,7 @@ namespace AutoCCG
 
         public Transform skillsArea;
 
-        float skillItemSize = 15f;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            if (cardModel)
-            {
-                UpdateView();
-            }
-        }
+        float skillItemSize = 20f;
 
         public void SetCard(CardModel _cardModel)
         {
