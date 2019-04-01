@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using UnityEngine;
 
 namespace AutoCCG
 {
-    [CreateAssetMenuAttribute(fileName = "TargetInArea", menuName = "AutoCCG/Conditions/Target in Area")]
     public class TargetInArea : CardConditionModel
     {
         public Target target;

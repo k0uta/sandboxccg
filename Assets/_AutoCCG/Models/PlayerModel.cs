@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -47,6 +48,7 @@ namespace AutoCCG
             else
             {
                 playerView = boardView.enemyView;
+                this.gameObject.tag = "Enemy";
             }
 
             GetComponentInChildren<HandModel>().handView = playerView.handView;
@@ -69,7 +71,7 @@ namespace AutoCCG
 
         public void Update()
         {
-            if(!playerView)
+            if (!playerView)
             {
                 return;
             }
@@ -185,26 +187,6 @@ namespace AutoCCG
         }
 
         [ClientRpc]
-        public void RpcCheckAndRemoveDeadCard(int battlegroundCardId)
-        {
-            var battlegrounds = this.GetComponentInChildren<BattlegroundsModel>();
-            var battlegroundsCards = battlegrounds.battlegroundsCards;
-            var handModel = this.GetComponentInChildren<HandModel>();
-            var handController = this.GetComponentInChildren<HandController>();
-
-            var battlegroundsCard = battlegroundsCards[battlegroundCardId];
-            if (battlegroundsCard.IsDead())
-            {
-                battlegrounds.RemoveBattlegroundsCard(battlegroundsCard);
-
-                // Not cool
-                handController.RemoveCardFromBattlegroundsQueue(handController.battlegroundsQueueCards[battlegroundCardId]);
-
-                handModel.RemoveCard(battlegroundsCard.cardModel);
-            }
-        }
-
-        [ClientRpc]
         public void RpcGiveGold(int amount)
         {
             GiveGold(amount);
@@ -224,7 +206,50 @@ namespace AutoCCG
         }
 
         [ClientRpc]
-        public void RpcCreateBattlegroundsPhaseActions(Phase phase)
+        public void RpcPerformSkillsForPhase(Phase phase)
+        {
+            PerformSkillsForPhase(phase);
+        }
+
+        void PerformSkillsForPhase(Phase phase)
+        {
+            var players = GameObject.FindObjectsOfType<PlayerModel>();
+
+            foreach (var player in players)
+            {
+                player.CreateBattlegroundsPhaseActions(phase);
+            }
+
+
+            foreach (var player in players)
+            {
+                player.CheckAndRemoveDeadCards();
+            }
+
+            ActionStackModel.GetInstance().PerformPhaseActionQueue(phase);
+
+            battlegroundsModel.battlegroundsView.UpdateCardsView();
+            battlegroundsModel.enemyBattlegrounds.battlegroundsView.UpdateCardsView();
+
+            if (ShouldPerformCardCleanup(players))
+            {
+                PerformSkillsForPhase(Phase.CardCleanup);
+            }
+        }
+
+        bool ShouldPerformCardCleanup(PlayerModel[] players)
+        {
+            foreach (var player in players)
+            {
+                if (player.battlegroundsModel.HasDeadCards()) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void CreateBattlegroundsPhaseActions(Phase phase)
         {
             var battlegroundsCards = battlegroundsModel.battlegroundsCards;
             foreach (var card in battlegroundsCards)
@@ -234,18 +259,29 @@ namespace AutoCCG
                 if (phase == Phase.CombatTurnEnd)
                 {
                     card.currentMana++;
+                    card.currentMana = Mathf.Min(card.currentMana, card.cardModel.mana);
                     card.CleanupTokenSkills();
                 }
             }
         }
 
-        [ClientRpc]
-        public void RpcPerformBattlegroundsPhaseActions(Phase phase)
+        public void CheckAndRemoveDeadCards()
         {
-            ActionStackModel.GetInstance().PerformPhaseActionQueue(phase);
+            var battlegroundsCards = battlegroundsModel.battlegroundsCards;
 
-            battlegroundsModel.battlegroundsView.UpdateCardsView();
-            battlegroundsModel.enemyBattlegrounds.battlegroundsView.UpdateCardsView();
+            for (int i = battlegroundsCards.Count - 1; i >= 0; i--)
+            {
+                var card = battlegroundsCards[i];
+                if (card.IsDead())
+                {
+                    battlegroundsModel.RemoveBattlegroundsCard(card);
+
+                    // Not cool
+                    handController.RemoveCardFromBattlegroundsQueue(handController.battlegroundsQueueCards[i]);
+
+                    handModel.RemoveCard(card.cardModel);
+                }
+            }
         }
 
         [ClientRpc]

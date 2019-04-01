@@ -19,13 +19,13 @@ namespace HutongGames.PlayMaker.Actions
 
         void PurgeDeadCards(GameObject targetPlayer)
         {
-            var battlegrounds = targetPlayer.GetComponentInChildren<BattlegroundsModel>();
-            var battlegroundsCards = battlegrounds.battlegroundsCards;
+            //var battlegrounds = targetPlayer.GetComponentInChildren<BattlegroundsModel>();
+            //var battlegroundsCards = battlegrounds.battlegroundsCards;
 
-            for (int i = battlegroundsCards.Count - 1; i >= 0; i--)
-            {
-                targetPlayer.GetComponent<PlayerModel>().RpcCheckAndRemoveDeadCard(i);
-            }
+            //for (int i = battlegroundsCards.Count - 1; i >= 0; i--)
+            //{
+            //    targetPlayer.GetComponent<PlayerModel>().RpcCheckAndRemoveDeadCard(i);
+            //}
         }
     }
 

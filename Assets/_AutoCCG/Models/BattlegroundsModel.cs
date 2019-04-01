@@ -69,5 +69,17 @@ namespace AutoCCG
                     throw new KeyNotFoundException();
             }
         }
+
+        public bool HasDeadCards()
+        {
+            foreach (var card in battlegroundsCards)
+            {
+                if (card.IsDead())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

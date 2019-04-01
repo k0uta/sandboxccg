@@ -6,11 +6,13 @@ namespace AutoCCG
     {
         public Area area;
 
+        public TargetPlayer target;
+
         public override List<ActionStepModel> CreateSteps(BattlegroundsCardModel battlegroundsCard)
         {
             var effectSteps = new List<ActionStepModel>();
 
-            var areaCards = battlegroundsCard.playerBattlegrounds.enemyBattlegrounds.GetArea(area);
+            var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area, target);
             var damage = battlegroundsCard.cardModel.attack;
 
             foreach (var card in areaCards)

@@ -33,3 +33,4 @@ MonoBehaviour:
   m_Name: '(Effect) ApplyAttackToArea '
   m_EditorClassIdentifier: 
   area: 0
+  target: 1

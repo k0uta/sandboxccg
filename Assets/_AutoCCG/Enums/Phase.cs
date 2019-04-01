@@ -4,6 +4,7 @@
     {
         CombatTurnAttack,
         CombatTurnStart,
-        CombatTurnEnd
+        CombatTurnEnd,
+        CardCleanup
     }
 }

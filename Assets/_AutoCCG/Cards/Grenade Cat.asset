@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
+  m_Name: Grenade Cat
+  m_EditorClassIdentifier: 
+  title: Grenade Cat
+  sprite: {fileID: 21300000, guid: b4a08ed4488ef3041b1d12bcb9433ca5, type: 3}
+  attack: 5
+  life: 2
+  mana: 1
+  cost: 1
+  cardSkills:
+  - {fileID: 114222714865942734}
+--- !u!114 &114222714865942734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
+  m_Name: (Skill) Explode on Death
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 776c9431434a15d45831e3548858aa29, type: 3}
+  description: 
+  phase: 3
+  actionPriority: 0
+  actionType: 1
+  conditions:
+  - {fileID: 114585451440444122}
+  - {fileID: 114321070842414194}
+  effects:
+  - {fileID: 114645310966807258}
+--- !u!114 &114321070842414194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac207ec02dbded40be147cc1b51ba64, type: 3}
+  m_Name: '(Condition) Target In Area '
+  m_EditorClassIdentifier: 
+  target: 0
+  area: 2
+--- !u!114 &114585451440444122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e0f37584e97984a9d17f1c0e0e0173, type: 3}
+  m_Name: '(Condition) Target Is Dead '
+  m_EditorClassIdentifier: 
+  target: 0
+--- !u!114 &114645310966807258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa15018d5c0ffde4f859ffc60e0f3a9e, type: 3}
+  m_Name: '(Effect) Apply Attack To Area '
+  m_EditorClassIdentifier: 
+  area: 2
+  target: 1
