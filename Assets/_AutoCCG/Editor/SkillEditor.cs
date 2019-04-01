@@ -107,6 +107,8 @@ public class SkillEditor : Editor
             property.GetArrayElementAtIndex(i - 1).objectReferenceValue = property.GetArrayElementAtIndex(i).objectReferenceValue;
         }
         property.arraySize--;
+
+        ForceSubAssetEditorReload();
     }
 
     void AddClassToProperty(SerializedProperty property, string className, string prefix)
@@ -120,7 +122,8 @@ public class SkillEditor : Editor
         var newEntry = property.GetArrayElementAtIndex(newIndex);
 
         var newClass = Activator.CreateInstance(classType) as UnityEngine.Object;
-        newClass.name = string.Format("({0}) {1} ", prefix, classType.Name);
+        var newClassName = ObjectNames.NicifyVariableName(classType.Name);
+        newClass.name = string.Format("({0}) {1} ", prefix, newClassName);
         AssetDatabase.AddObjectToAsset(newClass, AssetDatabase.GetAssetPath(serializedObject.targetObject));
         AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(newClass));
 
@@ -128,6 +131,8 @@ public class SkillEditor : Editor
 
         property.isExpanded = true;
         newEntry.isExpanded = true;
+
+        ForceSubAssetEditorReload();
     }
 
     public static List<string> GetScriptAssetsOfType<T>()
@@ -219,7 +224,11 @@ public class SkillEditor : Editor
             ProjectWindowUtil.CreateAsset(newObject, assetPath);
         }
         AssetDatabase.Refresh();
+        ForceSubAssetEditorReload();
+    }
 
+    static void ForceSubAssetEditorReload()
+    {
         var subAssetEditors = Resources.FindObjectsOfTypeAll<SubAssetEditor>();
         foreach (var subAssetEditor in subAssetEditors)
         {

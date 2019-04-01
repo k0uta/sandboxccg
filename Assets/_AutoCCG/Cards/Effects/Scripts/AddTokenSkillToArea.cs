@@ -11,7 +11,7 @@ namespace AutoCCG
 
         public TargetPlayer targetPlayer;
 
-        public int tokenAmount;
+        public int tokenAmount = 1;
 
         public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
         {
