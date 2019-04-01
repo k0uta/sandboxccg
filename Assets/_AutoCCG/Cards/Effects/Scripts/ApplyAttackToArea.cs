@@ -17,7 +17,7 @@ namespace AutoCCG
 
             foreach (var card in areaCards)
             {
-                var damageAction = new CardActionModel(phase, () => card.ApplyDamage(damage));
+                var damageAction = new CardActionModel(phase, battlegroundsCard, () => card.ApplyDamage(damage));
                 effectActions.Add(damageAction);
             }
 

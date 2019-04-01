@@ -29,10 +29,10 @@ namespace AutoCCG
         {
             var skillActions = base.CreateSkillActions(battlegroundsCard);
 
-            var countDecreaseAction = new CardActionModel(phase, () => count--);
+            var countDecreaseAction = new CardActionModel(phase, battlegroundsCard, () => count--);
             skillActions.Add(countDecreaseAction);
 
-            var checkForRemovalAction = new CardActionModel(Phase.CombatTurnEnd, () => CheckForRemoval(battlegroundsCard));
+            var checkForRemovalAction = new CardActionModel(Phase.CombatTurnEnd, battlegroundsCard, () => CheckForRemoval(battlegroundsCard));
             skillActions.Add(checkForRemovalAction);
 
             return skillActions;

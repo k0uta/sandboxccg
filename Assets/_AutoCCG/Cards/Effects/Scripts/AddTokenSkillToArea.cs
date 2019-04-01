@@ -21,7 +21,7 @@ namespace AutoCCG
 
             foreach (var card in areaCards)
             {
-                var skillAction = new CardActionModel(phase, () => AddCardTokenSkill(card, phase));
+                var skillAction = new CardActionModel(phase, battlegroundsCard, () => AddCardTokenSkill(card, phase));
                 effectActions.Add(skillAction);
             }
 

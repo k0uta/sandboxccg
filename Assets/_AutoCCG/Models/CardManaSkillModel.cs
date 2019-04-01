@@ -17,7 +17,7 @@ namespace AutoCCG
         {
             var skillActions = base.CreateSkillActions(battlegroundsCard);
 
-            var manaCostAction = new CardActionModel(phase, () => battlegroundsCard.currentMana -= manaCost);
+            var manaCostAction = new CardActionModel(phase, battlegroundsCard, () => battlegroundsCard.currentMana -= manaCost);
             skillActions.Add(manaCostAction);
 
             return skillActions;

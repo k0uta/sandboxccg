@@ -13,10 +13,10 @@ namespace AutoCCG
 
             Func<int, int> damageModifierFormula = (incomingDamage) => incomingDamage + modifier;
 
-            var addModifierAction = new CardActionModel(phase, () => battlegroundsCard.damageFormulas.Add(damageModifierFormula));
+            var addModifierAction = new CardActionModel(phase, battlegroundsCard, () => battlegroundsCard.damageFormulas.Add(damageModifierFormula), ActionType.Passive);
             effectActions.Add(addModifierAction);
 
-            var removeModifierAction = new CardActionModel(Phase.CombatTurnEnd, () => battlegroundsCard.damageFormulas.Remove(damageModifierFormula));
+            var removeModifierAction = new CardActionModel(Phase.CombatTurnEnd, battlegroundsCard, () => battlegroundsCard.damageFormulas.Remove(damageModifierFormula), ActionType.Passive);
             effectActions.Add(removeModifierAction);
 
             return effectActions;
