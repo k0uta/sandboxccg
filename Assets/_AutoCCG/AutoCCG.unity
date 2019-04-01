@@ -395,7 +395,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemy: {fileID: 0}
   startingHealth: 20
-  startingGold: 0
+  startingGold: 20
 --- !u!4 &296361396
 Transform:
   m_ObjectHideFlags: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 2
+          value: 0.5
         fsmIntParams: []
         fsmBoolParams: []
         fsmVector2Params: []
@@ -2100,7 +2100,7 @@ MonoBehaviour:
         tooltip: 
         showInInspector: 1
         networkSync: 0
-        value: 15
+        value: 10
       - useVariable: 1
         name: strategyPhaseDuration
         tooltip: 

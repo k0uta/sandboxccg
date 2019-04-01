@@ -8,18 +8,19 @@ namespace AutoCCG
 
         public Area area;
 
-        public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
+        public override List<ActionStepModel> CreateSteps(BattlegroundsCardModel battlegroundsCard)
         {
+            var effectSteps = new List<ActionStepModel>();
+
             var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area);
-            var effectActions = new List<CardActionModel>();
 
             foreach (var card in areaCards)
             {
-                var healAction = new CardActionModel(phase, battlegroundsCard, () => card.HealDamage(amount));
-                effectActions.Add(healAction);
+                var healStep = new ActionStepModel(() => card.HealDamage(amount));
+                effectSteps.Add(healStep);
             }
 
-            return effectActions;
+            return effectSteps;
         }
     }
 }

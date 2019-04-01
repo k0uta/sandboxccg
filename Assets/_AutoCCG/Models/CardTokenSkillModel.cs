@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AutoCCG
+﻿namespace AutoCCG
 {
     public class CardTokenSkillModel : CardSkillModel
     {
@@ -25,25 +23,14 @@ namespace AutoCCG
             return count > 0 && base.CanBePerformed(battlegroundsCard);
         }
 
-        public override List<CardActionModel> CreateSkillActions(BattlegroundsCardModel battlegroundsCard)
+        public override CardActionModel CreateAction(BattlegroundsCardModel battlegroundsCard)
         {
-            var skillActions = base.CreateSkillActions(battlegroundsCard);
+            var skillAction = base.CreateAction(battlegroundsCard);
 
-            var countDecreaseAction = new CardActionModel(phase, battlegroundsCard, () => count--);
-            skillActions.Add(countDecreaseAction);
+            var decreaseCountStep = new ActionStepModel(() => count--);
+            skillAction.steps.Add(decreaseCountStep);
 
-            var checkForRemovalAction = new CardActionModel(Phase.CombatTurnEnd, battlegroundsCard, () => CheckForRemoval(battlegroundsCard));
-            skillActions.Add(checkForRemovalAction);
-
-            return skillActions;
-        }
-
-        void CheckForRemoval(BattlegroundsCardModel battlegroundsCard)
-        {
-            if (count <= 0)
-            {
-                battlegroundsCard.cardModel.cardSkills.Remove(this);
-            }
+            return skillAction;
         }
     }
 }

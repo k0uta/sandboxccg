@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
-  m_Name: Shield Cat
+  m_Name: Thunder Cat
   m_EditorClassIdentifier: 
-  title: Shield Cat
-  sprite: {fileID: 21300000, guid: 4df5cf53215ee154da169085336a7009, type: 3}
+  title: Thunder Cat
+  sprite: {fileID: 21300000, guid: abb5fa83793041548b0a14e107889b3f, type: 3}
   attack: 1
-  life: 10
+  life: 30
   mana: 5
   cost: 1
   cardSkills:
-  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
-  - {fileID: 114190871799810186}
---- !u!114 &114190871799810186
+  - {fileID: 11400000, guid: e4945821dc9df014bbb2c7e8c26eb149, type: 2}
+  - {fileID: 114835765505809450}
+--- !u!114 &114249407609783328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,19 +30,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1643136b14de6a2409d9387f9389bea1, type: 3}
-  m_Name: (Skill) Shield Allies
+  m_Script: {fileID: 11500000, guid: aaf0d4c0d3264434a96baac0a8c1074f, type: 3}
+  m_Name: '(Effect) Add Action Filter To Stack '
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: a8ae577468b40d24b95b7d0b914e7e1b, type: 3}
-  description: 
-  phase: 1
-  actionPriority: 1
-  actionType: 1
-  conditions: []
-  effects:
-  - {fileID: 114959134359041692}
-  manaCost: 3
---- !u!114 &114307788326027040
+  typeFilter: 1
+--- !u!114 &114433122535582454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,30 +44,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
-  m_Name: (Token Skill) Shield Damage
+  m_Name: (Token Skill) Stun Actions
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: a8ae577468b40d24b95b7d0b914e7e1b, type: 3}
+  sprite: {fileID: 21300000, guid: 5de336507ea0ac54da24730a594a3f7a, type: 3}
   description: 
-  phase: 1
-  actionPriority: 1
+  phase: 0
+  actionPriority: 0
   actionType: 0
   conditions: []
   effects:
-  - {fileID: 114785355866118064}
---- !u!114 &114785355866118064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a254c8ef8758ced4288a35bf9e1bfd91, type: 3}
-  m_Name: '(Effect) Add Damage Modifier To Self '
-  m_EditorClassIdentifier: 
-  modifier: -1
---- !u!114 &114959134359041692
+  - {fileID: 114249407609783328}
+--- !u!114 &114440526318295602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +66,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72e07cdc78702f41aa9c4b78cb96046, type: 3}
   m_Name: '(Effect) Add Token Skill To Area '
   m_EditorClassIdentifier: 
-  tokenSkill: {fileID: 114307788326027040}
+  tokenSkill: {fileID: 114433122535582454}
   area: 2
-  targetPlayer: 0
+  targetPlayer: 1
   tokenAmount: 1
+--- !u!114 &114835765505809450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1643136b14de6a2409d9387f9389bea1, type: 3}
+  m_Name: (Skill) Stun Enemies
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: fdbafddd1c38eb046bf4c737d0815f72, type: 3}
+  description: 
+  phase: 0
+  actionPriority: 0
+  actionType: 1
+  conditions: []
+  effects:
+  - {fileID: 114440526318295602}
+  manaCost: 5

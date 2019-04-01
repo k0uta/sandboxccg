@@ -31,7 +31,8 @@ public static class IListExtensions
             if (weight > float.Epsilon)
             {
                 weights.Add(weight);
-            } else
+            }
+            else
             {
                 invalidIds.Add(i);
             }

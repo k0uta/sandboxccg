@@ -68,10 +68,22 @@ namespace AutoCCG
             {
                 if (skill.CanBePerformed(this))
                 {
-                    var skillActions = skill.CreateSkillActions(this);
-                    ActionStackModel.GetInstance().actionQueue.AddRange(skillActions);
+                    var skillAction = skill.CreateAction(this);
+                    ActionStackModel.GetInstance().actionQueue.Add(skillAction);
                 }
             }
+        }
+
+        public void CleanupTokenSkills()
+        {
+            var tokenSkills = cardModel.cardSkills.RemoveAll(EmptyTokenSkill);
+        }
+
+        bool EmptyTokenSkill(CardSkillModel cardSkill)
+        {
+            var cardTokenSkill = cardSkill as CardTokenSkillModel;
+
+            return cardTokenSkill != null && cardTokenSkill.count <= 0;
         }
     }
 }

@@ -234,6 +234,7 @@ namespace AutoCCG
                 if (phase == Phase.CombatTurnEnd)
                 {
                     card.currentMana++;
+                    card.CleanupTokenSkills();
                 }
             }
         }

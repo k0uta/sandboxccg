@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace AutoCCG
 {
     public class ActionStackModel
     {
+        public Phase currentPhase;
+
         public List<CardActionModel> actionQueue = new List<CardActionModel>();
 
         public List<Func<CardActionModel, bool>> actionValidations = new List<Func<CardActionModel, bool>>();
@@ -25,6 +26,7 @@ namespace AutoCCG
 
         public void PerformPhaseActionQueue(Phase phase)
         {
+            currentPhase = phase;
             // TODO: Add max count limit maybe?
             int count = 0;
             while (PerformNextActionBatch(phase))
@@ -35,30 +37,38 @@ namespace AutoCCG
 
         bool PerformNextActionBatch(Phase phase)
         {
-            var actionBatch = from cardAction in actionQueue
-                              where cardAction.phase == phase
-                              group cardAction by new { cardAction.actionPriority, cardAction.actionType } into actionCategory
-                              let actions = actionQueue.FindAll((x) => x.actionPriority == actionCategory.Key.actionPriority && x.actionType == actionCategory.Key.actionType)
-                              orderby actionCategory.Key.actionPriority, actionCategory.Key.actionType
-                              select actions.First();
+            var actionsBatch = from cardAction in actionQueue
+                               where cardAction.phase == phase
+                               group cardAction by new { cardAction.actionPriority, cardAction.actionType } into actionCategory
+                               let cardActions = actionQueue.FindAll((x) => x.actionPriority == actionCategory.Key.actionPriority && x.actionType == actionCategory.Key.actionType && x.phase == phase)
+                               orderby actionCategory.Key.actionPriority, actionCategory.Key.actionType
+                               select cardActions;
 
-            if (actionBatch.Count() <= 0)
+            if (!actionsBatch.Any())
             {
                 return false;
             }
+            var actions = actionsBatch.First();
 
             // Purge invalid actions
-            var invalidActions = actionBatch.Where((cardAction) => !IsActionValid(cardAction));
+            var invalidActions = actions.Where((cardAction) => !IsActionValid(cardAction));
             foreach (var invalidAction in invalidActions)
             {
                 actionQueue.Remove(invalidAction);
             }
 
-            var validActions = actionBatch.Except(invalidActions);
+            var validActions = actions.Except(invalidActions);
 
             foreach (var cardAction in validActions)
             {
                 cardAction.PerformAction();
+
+                var reverseAction = cardAction.GetReverseAction();
+                if (reverseAction != null)
+                {
+                    actionQueue.Add(reverseAction);
+                }
+
                 actionQueue.Remove(cardAction);
             }
 

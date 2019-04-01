@@ -7,19 +7,16 @@ namespace AutoCCG
     {
         public int modifier;
 
-        public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
+        public override List<ActionStepModel> CreateSteps(BattlegroundsCardModel battlegroundsCard)
         {
-            var effectActions = new List<CardActionModel>();
+            var effectSteps = new List<ActionStepModel>();
 
             Func<int, int> damageModifierFormula = (incomingDamage) => incomingDamage + modifier;
 
-            var addModifierAction = new CardActionModel(phase, battlegroundsCard, () => battlegroundsCard.damageFormulas.Add(damageModifierFormula), ActionType.Passive);
-            effectActions.Add(addModifierAction);
+            var modifierStep = new ActionStepModel(() => battlegroundsCard.damageFormulas.Add(damageModifierFormula), () => battlegroundsCard.damageFormulas.Remove(damageModifierFormula));
+            effectSteps.Add(modifierStep);
 
-            var removeModifierAction = new CardActionModel(Phase.CombatTurnEnd, battlegroundsCard, () => battlegroundsCard.damageFormulas.Remove(damageModifierFormula), ActionType.Passive);
-            effectActions.Add(removeModifierAction);
-
-            return effectActions;
+            return effectSteps;
         }
     }
 }

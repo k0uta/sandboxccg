@@ -6,14 +6,14 @@ namespace AutoCCG
     {
         public int amount;
 
-        public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
+        public override List<ActionStepModel> CreateSteps(BattlegroundsCardModel battlegroundsCard)
         {
-            var effectActions = new List<CardActionModel>();
+            var effectSteps = new List<ActionStepModel>();
 
-            var selfDamageAction = new CardActionModel(phase, battlegroundsCard, () => battlegroundsCard.ApplyDamage(amount), ActionType.Passive);
-            effectActions.Add(selfDamageAction);
+            var damageStep = new ActionStepModel(() => battlegroundsCard.ApplyDamage(amount));
+            effectSteps.Add(damageStep);
 
-            return effectActions;
+            return effectSteps;
         }
     }
 }

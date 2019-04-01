@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AutoCCG
@@ -13,22 +14,22 @@ namespace AutoCCG
 
         public int tokenAmount = 1;
 
-        public override List<CardActionModel> CreateActions(BattlegroundsCardModel battlegroundsCard, Phase phase)
+        public override List<ActionStepModel> CreateSteps(BattlegroundsCardModel battlegroundsCard)
         {
-            var effectActions = new List<CardActionModel>();
+            var effectSteps = new List<ActionStepModel>();
 
             var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area, targetPlayer);
 
             foreach (var card in areaCards)
             {
-                var skillAction = new CardActionModel(phase, battlegroundsCard, () => AddCardTokenSkill(card, phase));
-                effectActions.Add(skillAction);
+                var tokenStep = new ActionStepModel(() => AddCardTokenSkill(card));
+                effectSteps.Add(tokenStep);
             }
 
-            return effectActions;
+            return effectSteps;
         }
 
-        void AddCardTokenSkill(BattlegroundsCardModel targetCard, Phase phase)
+        void AddCardTokenSkill(BattlegroundsCardModel targetCard)
         {
             var cardTokenSkill = (CardTokenSkillModel)targetCard.cardModel.cardSkills.Find(FindCardTokenSkill);
             if (cardTokenSkill)
@@ -41,9 +42,12 @@ namespace AutoCCG
                 newTokenSkill.count = tokenAmount;
                 newTokenSkill.SetBaseSkill(tokenSkill);
                 targetCard.cardModel.cardSkills.Add(newTokenSkill);
-                if (phase == newTokenSkill.phase)
+
+                ActionStackModel actionStack = ActionStackModel.GetInstance();
+
+                if (actionStack.currentPhase == newTokenSkill.phase)
                 {
-                    ActionStackModel.GetInstance().actionQueue.AddRange(newTokenSkill.CreateSkillActions(targetCard));
+                    actionStack.actionQueue.Add(newTokenSkill.CreateAction(targetCard));
                 }
             }
         }

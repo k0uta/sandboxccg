@@ -18,6 +18,8 @@ public class SkillEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("sprite"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("description"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("phase"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("actionPriority"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("actionType"));
 
         var manaCost = serializedObject.FindProperty("manaCost");
         if (manaCost != null)

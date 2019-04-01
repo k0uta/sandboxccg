@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace AutoCCG
 {
-    //[CreateAssetMenuAttribute(fileName = "Skill", menuName = "AutoCCG/Skill")]
     public class CardSkillModel : ScriptableObject
     {
         public Sprite sprite;
@@ -11,6 +10,10 @@ namespace AutoCCG
         public string description;
 
         public Phase phase;
+
+        public ActionPriority actionPriority;
+
+        public ActionType actionType;
 
         [Expandable]
         public List<CardConditionModel> conditions;
@@ -31,15 +34,17 @@ namespace AutoCCG
             return true;
         }
 
-        public virtual List<CardActionModel> CreateSkillActions(BattlegroundsCardModel battlegroundsCard)
+        public virtual CardActionModel CreateAction(BattlegroundsCardModel battlegroundsCard)
         {
-            List<CardActionModel> skillActions = new List<CardActionModel>();
+            CardActionModel cardAction = new CardActionModel(phase, battlegroundsCard, actionType, actionPriority);
+
             foreach (var effect in effects)
             {
-                skillActions.AddRange(effect.CreateActions(battlegroundsCard, phase));
+                var effectSteps = effect.CreateSteps(battlegroundsCard);
+                cardAction.steps.AddRange(effectSteps);
             }
 
-            return skillActions;
+            return cardAction;
         }
     }
 }

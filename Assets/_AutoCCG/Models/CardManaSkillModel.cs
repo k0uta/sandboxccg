@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-namespace AutoCCG
+﻿namespace AutoCCG
 {
-    //[CreateAssetMenuAttribute(fileName = "Mana Skill", menuName = "AutoCCG/Mana Skill")]
     public class CardManaSkillModel : CardSkillModel
     {
         public int manaCost;
@@ -13,14 +9,14 @@ namespace AutoCCG
             return battlegroundsCard.currentMana >= manaCost && base.CanBePerformed(battlegroundsCard);
         }
 
-        public override List<CardActionModel> CreateSkillActions(BattlegroundsCardModel battlegroundsCard)
+        public override CardActionModel CreateAction(BattlegroundsCardModel battlegroundsCard)
         {
-            var skillActions = base.CreateSkillActions(battlegroundsCard);
+            var skillAction = base.CreateAction(battlegroundsCard);
 
-            var manaCostAction = new CardActionModel(phase, battlegroundsCard, () => battlegroundsCard.currentMana -= manaCost);
-            skillActions.Add(manaCostAction);
+            var manaCostStep = new ActionStepModel(() => battlegroundsCard.currentMana -= manaCost);
+            skillAction.steps.Add(manaCostStep);
 
-            return skillActions;
+            return skillAction;
         }
     }
 }
