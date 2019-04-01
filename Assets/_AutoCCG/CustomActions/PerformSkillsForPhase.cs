@@ -13,8 +13,6 @@ namespace HutongGames.PlayMaker.Actions
             var boardController = Fsm.GameObject.GetComponent<BoardController>();
 
             boardController.player.GetComponent<PlayerModel>().RpcPerformSkillsForPhase(targetPhase);
-
-            Finish();
         }
     }
 

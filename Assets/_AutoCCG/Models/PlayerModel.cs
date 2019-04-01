@@ -234,6 +234,12 @@ namespace AutoCCG
             if (ShouldPerformCardCleanup(players))
             {
                 PerformSkillsForPhase(Phase.CardCleanup);
+            } else
+            {
+                if (isServer)
+                {
+                    GameObject.FindObjectOfType<BoardController>().GetComponent<PlayMakerFSM>().Fsm.Event("FINISHED");
+                }
             }
         }
 
