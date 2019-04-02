@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -208,10 +207,10 @@ namespace AutoCCG
         [ClientRpc]
         public void RpcPerformSkillsForPhase(Phase phase)
         {
-            PerformSkillsForPhase(phase);
+            StartCoroutine(PerformSkillsForPhase(phase));
         }
 
-        void PerformSkillsForPhase(Phase phase)
+        IEnumerator PerformSkillsForPhase(Phase phase)
         {
             var players = GameObject.FindObjectsOfType<PlayerModel>();
 
@@ -226,15 +225,16 @@ namespace AutoCCG
                 player.CheckAndRemoveDeadCards();
             }
 
-            ActionStackModel.GetInstance().PerformPhaseActionQueue(phase);
+            yield return ActionStackModel.GetInstance().PerformPhaseActionQueue(phase);
 
             battlegroundsModel.battlegroundsView.UpdateCardsView();
             battlegroundsModel.enemyBattlegrounds.battlegroundsView.UpdateCardsView();
 
             if (ShouldPerformCardCleanup(players))
             {
-                PerformSkillsForPhase(Phase.CardCleanup);
-            } else
+                StartCoroutine(PerformSkillsForPhase(Phase.CardCleanup));
+            }
+            else
             {
                 if (isServer)
                 {
@@ -247,7 +247,8 @@ namespace AutoCCG
         {
             foreach (var player in players)
             {
-                if (player.battlegroundsModel.HasDeadCards()) {
+                if (player.battlegroundsModel.HasDeadCards())
+                {
                     return true;
                 }
             }

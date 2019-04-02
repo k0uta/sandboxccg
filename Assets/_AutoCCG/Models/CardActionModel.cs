@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace AutoCCG
 {
@@ -22,12 +23,13 @@ namespace AutoCCG
             this.actionPriority = actionPriority;
         }
 
-        public virtual void PerformAction()
+        public IEnumerator PerformAction()
         {
             foreach (var step in steps)
             {
-                step.run();
+                yield return step.RunCoroutine();
             }
+            yield return null;
         }
 
         public virtual CardActionModel GetReverseAction()

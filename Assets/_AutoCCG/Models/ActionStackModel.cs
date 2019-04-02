@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,55 +25,48 @@ namespace AutoCCG
             return instance;
         }
 
-        public void PerformPhaseActionQueue(Phase phase)
+        public IEnumerator PerformPhaseActionQueue(Phase phase)
         {
             currentPhase = phase;
-            // TODO: Add max count limit maybe?
-            int count = 0;
-            while (PerformNextActionBatch(phase))
+
+            while (true)
             {
-                count++;
-            }
-        }
+                var actionsBatch = from cardAction in actionQueue
+                                   where cardAction.phase == phase
+                                   group cardAction by new { cardAction.actionPriority, cardAction.actionType } into actionCategory
+                                   let cardActions = actionQueue.FindAll((x) => x.actionPriority == actionCategory.Key.actionPriority && x.actionType == actionCategory.Key.actionType && x.phase == phase)
+                                   orderby actionCategory.Key.actionPriority, actionCategory.Key.actionType
+                                   select cardActions;
 
-        bool PerformNextActionBatch(Phase phase)
-        {
-            var actionsBatch = from cardAction in actionQueue
-                               where cardAction.phase == phase
-                               group cardAction by new { cardAction.actionPriority, cardAction.actionType } into actionCategory
-                               let cardActions = actionQueue.FindAll((x) => x.actionPriority == actionCategory.Key.actionPriority && x.actionType == actionCategory.Key.actionType && x.phase == phase)
-                               orderby actionCategory.Key.actionPriority, actionCategory.Key.actionType
-                               select cardActions;
-
-            if (!actionsBatch.Any())
-            {
-                return false;
-            }
-            var actions = actionsBatch.First();
-
-            // Purge invalid actions
-            var invalidActions = actions.Where((cardAction) => !IsActionValid(cardAction));
-            foreach (var invalidAction in invalidActions)
-            {
-                actionQueue.Remove(invalidAction);
-            }
-
-            var validActions = actions.Except(invalidActions);
-
-            foreach (var cardAction in validActions)
-            {
-                cardAction.PerformAction();
-
-                var reverseAction = cardAction.GetReverseAction();
-                if (reverseAction != null)
+                if (!actionsBatch.Any())
                 {
-                    actionQueue.Add(reverseAction);
+                    break;
                 }
 
-                actionQueue.Remove(cardAction);
-            }
+                var actions = actionsBatch.First();
 
-            return true;
+                // Purge invalid actions
+                var invalidActions = actions.Where((cardAction) => !IsActionValid(cardAction));
+                foreach (var invalidAction in invalidActions)
+                {
+                    actionQueue.Remove(invalidAction);
+                }
+
+                var validActions = actions.Except(invalidActions);
+
+                foreach (var cardAction in validActions)
+                {
+                    yield return cardAction.PerformAction();
+
+                    var reverseAction = cardAction.GetReverseAction();
+                    if (reverseAction != null)
+                    {
+                        actionQueue.Add(reverseAction);
+                    }
+
+                    actionQueue.Remove(cardAction);
+                }
+            }
         }
 
         bool IsActionValid(CardActionModel cardAction)

@@ -11,6 +11,7 @@ namespace AutoCCG
         public void SetBattlegroundsCard(BattlegroundsCardModel battlegroundsCardModel)
         {
             this.battlegroundsCardModel = battlegroundsCardModel;
+            battlegroundsCardModel.battlegroundsCardView = this;
             cardView.SetCard(battlegroundsCardModel.cardModel);
             UpdateView();
         }

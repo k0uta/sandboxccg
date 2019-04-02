@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace AutoCCG
 {
@@ -19,9 +21,17 @@ namespace AutoCCG
             {
                 var damageStep = new ActionStepModel(() => card.ApplyDamage(damage));
                 effectSteps.Add(damageStep);
+                var visualEffectStep = new ActionStepModel(VisualEffect(card));
+                effectSteps.Add(visualEffectStep);
             }
 
             return effectSteps;
+        }
+
+        IEnumerator VisualEffect(BattlegroundsCardModel targetCard)
+        {
+            iTween.PunchScale(targetCard.battlegroundsCardView.gameObject, new Vector3(0.5f, 0.5f), 0.5f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

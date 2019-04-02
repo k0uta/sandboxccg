@@ -13,6 +13,8 @@ namespace AutoCCG
 
         public BattlegroundsModel playerBattlegrounds;
 
+        public BattlegroundsCardView battlegroundsCardView;
+
         public List<Func<int, int>> damageFormulas = new List<Func<int, int>>();
 
         public BattlegroundsCardModel(CardModel cardModel)
