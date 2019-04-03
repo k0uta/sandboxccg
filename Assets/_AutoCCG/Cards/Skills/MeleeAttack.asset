@@ -17,6 +17,7 @@ MonoBehaviour:
   phase: 0
   actionPriority: 1
   actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
   conditions:
   - {fileID: 114452328975273572}
   effects:

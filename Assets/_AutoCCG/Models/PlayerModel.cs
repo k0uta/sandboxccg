@@ -268,6 +268,7 @@ namespace AutoCCG
                     card.currentMana++;
                     card.currentMana = Mathf.Min(card.currentMana, card.cardModel.mana);
                     card.CleanupTokenSkills();
+                    card.battlegroundsCardView.UpdateView();
                 }
             }
         }

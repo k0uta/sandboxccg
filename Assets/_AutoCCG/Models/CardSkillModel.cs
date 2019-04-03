@@ -15,6 +15,8 @@ namespace AutoCCG
 
         public ActionType actionType;
 
+        public Color color = Color.white;
+
         [Expandable]
         public List<CardConditionModel> conditions;
 

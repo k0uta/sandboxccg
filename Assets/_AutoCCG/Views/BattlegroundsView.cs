@@ -13,6 +13,8 @@ namespace AutoCCG
 
         public bool reverseOrientation;
 
+        private List<BattlegroundsCardView> removedCards = new List<BattlegroundsCardView>();
+
         public void SpawnBattlegroundsCard(BattlegroundsCardModel battlegroundsCardModel)
         {
             var battlegroundsCard = GameObject.Instantiate(cardPrefab, cardArea);
@@ -41,7 +43,17 @@ namespace AutoCCG
         {
             var battlegroundsCardView = battlegroundsCards.Find(battlegroundsCard => battlegroundsCard.battlegroundsCardModel == battlegroundsCardModel);
             battlegroundsCards.Remove(battlegroundsCardView);
-            Destroy(battlegroundsCardView.gameObject);
+            removedCards.Add(battlegroundsCardView);
+            battlegroundsCardView.gameObject.SetActive(false);
+        }
+
+        public void ClearRemovedCards()
+        {
+            foreach (var card in removedCards)
+            {
+                Destroy(card.gameObject);
+            }
+            removedCards.Clear();
         }
     }
 }

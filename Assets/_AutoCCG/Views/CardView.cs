@@ -63,6 +63,7 @@ namespace AutoCCG
                 skillImage.preserveAspect = true;
                 skillImageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(skillItemSize, skillItemSize);
                 skillImageObject.transform.SetParent(skillsArea);
+                skillImage.color = skill.color;
             }
         }
 

@@ -37,6 +37,7 @@ MonoBehaviour:
   phase: 3
   actionPriority: 0
   actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
   conditions:
   - {fileID: 114585451440444122}
   - {fileID: 114321070842414194}

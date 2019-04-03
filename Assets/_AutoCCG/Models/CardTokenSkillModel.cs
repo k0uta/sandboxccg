@@ -7,6 +7,7 @@
         public void SetBaseSkill(CardSkillModel skill)
         {
             sprite = skill.sprite;
+            color = skill.color;
             description = skill.description;
             phase = skill.phase;
             conditions = skill.conditions;

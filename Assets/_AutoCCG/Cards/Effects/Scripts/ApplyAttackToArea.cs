@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AutoCCG
 {
@@ -17,21 +19,39 @@ namespace AutoCCG
             var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area, target);
             var damage = battlegroundsCard.cardModel.attack;
 
-            foreach (var card in areaCards)
-            {
-                var damageStep = new ActionStepModel(() => card.ApplyDamage(damage));
-                effectSteps.Add(damageStep);
-                var visualEffectStep = new ActionStepModel(VisualEffect(card));
-                effectSteps.Add(visualEffectStep);
-            }
+            var damageStep = new ActionStepModel(DamageToArea(damage, battlegroundsCard, areaCards));
+            effectSteps.Add(damageStep);
 
             return effectSteps;
         }
 
-        IEnumerator VisualEffect(BattlegroundsCardModel targetCard)
+        IEnumerator DamageToArea(int damage, BattlegroundsCardModel source, List<BattlegroundsCardModel> targets)
         {
-            iTween.PunchScale(targetCard.battlegroundsCardView.gameObject, new Vector3(0.5f, 0.5f), 0.5f);
-            yield return new WaitForSeconds(0.5f);
+            var sequence = DOTween.Sequence();
+
+            var sourceSequence = DOTween.Sequence();
+
+            sourceSequence.Append(source.battlegroundsCardView.transform.DOPunchScale(new Vector3(0.1f, 0.1f), 0.5f));
+
+            sourceSequence.Insert(0, source.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(Color.blue, sourceSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+
+            sequence.Append(sourceSequence);
+
+            foreach (var target in targets)
+            {
+                target.ApplyDamage(damage);
+                target.battlegroundsCardView.UpdateView();
+
+                var targetDamageSequence = DOTween.Sequence();
+
+                targetDamageSequence.Append(target.battlegroundsCardView.transform.DOPunchPosition(new Vector3(4f, 0f), sequence.Duration()));
+
+                targetDamageSequence.Insert(0, target.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(Color.red, targetDamageSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+
+                sequence.Insert(0, targetDamageSequence);
+            }
+
+            yield return sequence.Play().WaitForCompletion();
         }
     }
 }

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AutoCCG
 {
@@ -20,11 +23,8 @@ namespace AutoCCG
 
             var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area, targetPlayer);
 
-            foreach (var card in areaCards)
-            {
-                var tokenStep = new ActionStepModel(() => AddCardTokenSkill(card));
-                effectSteps.Add(tokenStep);
-            }
+            var addTokensStep = new ActionStepModel(AddTokens(battlegroundsCard, areaCards));
+            effectSteps.Add(addTokensStep);
 
             return effectSteps;
         }
@@ -50,6 +50,35 @@ namespace AutoCCG
                     actionStack.actionQueue.Add(newTokenSkill.CreateAction(targetCard));
                 }
             }
+        }
+
+        IEnumerator AddTokens(BattlegroundsCardModel source, List<BattlegroundsCardModel> targets)
+        {
+            var sequence = DOTween.Sequence();
+
+            var sourceSequence = DOTween.Sequence();
+
+            sourceSequence.Append(source.battlegroundsCardView.transform.DOPunchScale(new Vector3(0.1f, 0.1f), 0.5f));
+
+            sourceSequence.Insert(0, source.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(Color.blue, sourceSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+
+            sequence.Append(sourceSequence);
+
+            foreach (var target in targets)
+            {
+                AddCardTokenSkill(target);
+                target.battlegroundsCardView.UpdateView();
+
+                var targetTokenSequence = DOTween.Sequence();
+
+                targetTokenSequence.Append(target.battlegroundsCardView.transform.DOPunchPosition(new Vector3(4f, 0f), sequence.Duration()));
+
+                targetTokenSequence.Insert(0, target.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(targetPlayer == TargetPlayer.Enemy ? Color.magenta : Color.green, targetTokenSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+
+                sequence.Insert(0, targetTokenSequence);
+            }
+
+            yield return sequence.Play().WaitForCompletion();
         }
 
         bool FindCardTokenSkill(CardSkillModel cardSkill)

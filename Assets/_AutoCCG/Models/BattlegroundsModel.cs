@@ -40,6 +40,7 @@ namespace AutoCCG
             {
                 RemoveBattlegroundsCard(battlegroundsCards[i]);
             }
+            battlegroundsView.ClearRemovedCards();
         }
 
         public List<BattlegroundsCardModel> GetArea(Area area)

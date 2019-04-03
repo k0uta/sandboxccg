@@ -16,6 +16,7 @@ public class SkillEditor : Editor
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("sprite"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("color"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("description"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("phase"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("actionPriority"));
