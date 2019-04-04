@@ -9,6 +9,7 @@
             sprite = skill.sprite;
             color = skill.color;
             description = skill.description;
+            title = skill.title;
             phase = skill.phase;
             conditions = skill.conditions;
             effects = skill.effects;

@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: (Token Skill) Stun Actions
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5de336507ea0ac54da24730a594a3f7a, type: 3}
-  description: 
+  title: Stunned
+  description: Can't do anything this turn
   phase: 0
   actionPriority: 0
   actionType: 0
@@ -84,7 +85,8 @@ MonoBehaviour:
   m_Name: (Skill) Stun Enemies
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: fdbafddd1c38eb046bf4c737d0815f72, type: 3}
-  description: 
+  title: Thunder Touch
+  description: Stun all enemies for 1 turn
   phase: 0
   actionPriority: 0
   actionType: 1

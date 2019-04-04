@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: RangedAttack
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: dcccad35cd36f714880b1c718d912081, type: 3}
-  description: 
+  title: Ranged Attack
+  description: Always attack the enemy frontline
   phase: 0
   actionPriority: 1
   actionType: 1

@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: (Token Skill) Poison Damage
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e9ffd588587ef14479ef45f62f33a168, type: 3}
-  description: 
+  title: Poisoned
+  description: Take 1 damage each turn
   phase: 0
   actionPriority: 1
   actionType: 0
@@ -67,7 +68,8 @@ MonoBehaviour:
   m_Name: (Skill) Poison Target Area
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e9ffd588587ef14479ef45f62f33a168, type: 3}
-  description: 
+  title: Poison Spit
+  description: Poison the enemy area
   phase: 0
   actionPriority: 1
   actionType: 1

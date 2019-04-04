@@ -33,7 +33,8 @@ MonoBehaviour:
   m_Name: (Skill) Explode on Death
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 776c9431434a15d45831e3548858aa29, type: 3}
-  description: 
+  title: Kaboom
+  description: Attack all enemies on death
   phase: 3
   actionPriority: 0
   actionType: 1

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: MeleeAttack
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: adebdd821625854409992d7da1aeb965, type: 3}
-  description: 
+  title: Normal Attack
+  description: If this card is frontlining, attack the enemy frontliner
   phase: 0
   actionPriority: 1
   actionType: 1

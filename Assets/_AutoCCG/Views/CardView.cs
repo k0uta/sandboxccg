@@ -78,6 +78,16 @@ namespace AutoCCG
             cardMana.text = string.Format("{0}/{1}", currentMana, cardModel.mana);
             cardManaSlider.value = (float)currentMana / (float)cardModel.mana;
         }
+
+        public void Inspect()
+        {
+            CardInspectorView.GetInstance().Inspect(cardModel);
+        }
+
+        public void Uninspect()
+        {
+            CardInspectorView.GetInstance().Uninspect(cardModel);
+        }
     }
 
 }

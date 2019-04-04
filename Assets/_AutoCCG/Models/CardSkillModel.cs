@@ -7,6 +7,8 @@ namespace AutoCCG
     {
         public Sprite sprite;
 
+        public string title;
+
         public string description;
 
         public Phase phase;
