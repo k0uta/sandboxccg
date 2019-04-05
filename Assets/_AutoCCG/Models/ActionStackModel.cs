@@ -29,6 +29,11 @@ namespace AutoCCG
         {
             currentPhase = phase;
 
+            if (actionQueue.Count((cardAction) => cardAction.phase == phase) > 0)
+            {
+                yield return BattlePhaseInfoView.GetInstance().AnimatePhaseText(phase);
+            }
+
             while (true)
             {
                 var actionsBatch = from cardAction in actionQueue

@@ -41,7 +41,7 @@ namespace AutoCCG
                 return null;
             }
 
-            CardActionModel reverseAction = new CardActionModel(Phase.CombatTurnEnd, source, ActionType.Passive, ActionPriority.Default);
+            CardActionModel reverseAction = new CardActionModel(Phase.CombatEnd, source, ActionType.Passive, ActionPriority.Default);
             foreach (var step in undoSteps)
             {
                 reverseAction.steps.Add(new ActionStepModel(step.undo));

@@ -2,9 +2,9 @@
 {
     public enum Phase
     {
-        CombatTurnAttack,
-        CombatTurnStart,
-        CombatTurnEnd,
+        CombatAttack,
+        CombatStart,
+        CombatEnd,
         CardCleanup
     }
 }

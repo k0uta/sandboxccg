@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace AutoCCG
 {
@@ -7,6 +10,13 @@ namespace AutoCCG
         public CardView cardView;
 
         public BattlegroundsCardModel battlegroundsCardModel;
+
+        public TextMeshProUGUI amountText;
+
+        private void OnEnable()
+        {
+            amountText.alpha = 0f;
+        }
 
         public void SetBattlegroundsCard(BattlegroundsCardModel battlegroundsCardModel)
         {
@@ -21,6 +31,31 @@ namespace AutoCCG
             cardView.SetCardLife(battlegroundsCardModel.cardModel.life - battlegroundsCardModel.damageReceived);
             cardView.SetCardMana(battlegroundsCardModel.currentMana);
             cardView.UpdateCardSkills();
+        }
+
+        public Sequence GetValueIncrementSequence(int amount, float duration)
+        {
+            var damageSequence = DOTween.Sequence();
+
+            damageSequence.Append(transform.DOPunchPosition(new Vector3(4f, 0f), duration));
+
+            damageSequence.Insert(0, cardView.GetComponent<Image>().DOColor(Color.red, damageSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+
+            amountText.color = amount < 0 ? Color.red : Color.green;
+            amountText.alpha = 1f;
+            amountText.text = amount.ToString();
+
+            amountText.transform.localPosition = Vector3.zero;
+
+            var amountSequence = DOTween.Sequence();
+
+            amountSequence.Append(amountText.transform.DOLocalMoveY(10f, duration));
+
+            amountSequence.Insert(0, amountText.DOFade(0f, duration));
+
+            damageSequence.Insert(0, amountSequence);
+
+            return damageSequence;
         }
     }
 }

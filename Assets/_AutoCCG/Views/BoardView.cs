@@ -42,7 +42,7 @@ namespace AutoCCG
 
         private void Start()
         {
-            SetPhase(BoardPhase.Setup);
+            SetBoardPhase(BoardPhase.Setup);
         }
 
         public void ResetGame()
@@ -54,18 +54,18 @@ namespace AutoCCG
         public void RpcUpdateVariables(BoardPhase phase, int phaseSeconds, int currentTurn, int maxTurns, string gameWinnerName)
         {
             turnText.text = string.Format("Turn" + Environment.NewLine + "{0}/{1}", currentTurn, maxTurns);
-            
+
             phaseTimerText.text = string.Format("Time Left" + Environment.NewLine + "{0}s", phaseSeconds);
 
             gameOverText.text = string.Format("Game Over" + Environment.NewLine + "{0} wins", gameWinnerName);
 
             if (currentPhase != phase)
             {
-                SetPhase(phase);
+                SetBoardPhase(phase);
             }
         }
 
-        void SetPhase(BoardPhase phase)
+        void SetBoardPhase(BoardPhase phase)
         {
             currentPhase = phase;
 

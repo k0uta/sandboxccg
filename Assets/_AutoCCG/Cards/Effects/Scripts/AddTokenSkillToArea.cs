@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -73,7 +72,10 @@ namespace AutoCCG
 
                 targetTokenSequence.Append(target.battlegroundsCardView.transform.DOPunchPosition(new Vector3(4f, 0f), sequence.Duration()));
 
-                targetTokenSequence.Insert(0, target.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(targetPlayer == TargetPlayer.Enemy ? Color.magenta : Color.green, targetTokenSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+                if (target != source)
+                {
+                    targetTokenSequence.Insert(0, target.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(targetPlayer == TargetPlayer.Enemy ? Color.magenta : Color.green, targetTokenSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+                }
 
                 sequence.Insert(0, targetTokenSequence);
             }

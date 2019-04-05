@@ -219,7 +219,6 @@ namespace AutoCCG
                 player.CreateBattlegroundsPhaseActions(phase);
             }
 
-
             foreach (var player in players)
             {
                 player.CheckAndRemoveDeadCards();
@@ -263,7 +262,7 @@ namespace AutoCCG
             {
                 card.PerformSkillsForPhase(phase);
                 // TODO: Move to some place mana regen?
-                if (phase == Phase.CombatTurnEnd)
+                if (phase == Phase.CombatEnd)
                 {
                     card.currentMana++;
                     card.currentMana = Mathf.Min(card.currentMana, card.cardModel.mana);

@@ -24,7 +24,7 @@ namespace AutoCCG
             currentMana = 0;
         }
 
-        public void ApplyDamage(int damage)
+        public int ApplyDamage(int damage)
         {
             int totalDamage = damage;
 
@@ -34,6 +34,8 @@ namespace AutoCCG
             }
 
             damageReceived += totalDamage;
+
+            return totalDamage;
         }
 
         public void HealDamage(int healAmount)

@@ -39,15 +39,10 @@ namespace AutoCCG
 
             foreach (var target in targets)
             {
-                target.ApplyDamage(damage);
+                var totalDamage = target.ApplyDamage(damage);
                 target.battlegroundsCardView.UpdateView();
 
-                var targetDamageSequence = DOTween.Sequence();
-
-                targetDamageSequence.Append(target.battlegroundsCardView.transform.DOPunchPosition(new Vector3(4f, 0f), sequence.Duration()));
-
-                targetDamageSequence.Insert(0, target.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(Color.red, targetDamageSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
-
+                var targetDamageSequence = target.battlegroundsCardView.GetValueIncrementSequence(-totalDamage, sourceSequence.Duration());
                 sequence.Insert(0, targetDamageSequence);
             }
 
