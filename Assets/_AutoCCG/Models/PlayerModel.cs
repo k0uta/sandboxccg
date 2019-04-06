@@ -221,7 +221,7 @@ namespace AutoCCG
 
             foreach (var player in players)
             {
-                player.CheckAndRemoveDeadCards();
+                yield return player.CheckAndRemoveDeadCards();
             }
 
             yield return ActionStackModel.GetInstance().PerformPhaseActionQueue(phase);
@@ -272,7 +272,7 @@ namespace AutoCCG
             }
         }
 
-        public void CheckAndRemoveDeadCards()
+        public IEnumerator CheckAndRemoveDeadCards()
         {
             var battlegroundsCards = battlegroundsModel.battlegroundsCards;
 
@@ -281,7 +281,7 @@ namespace AutoCCG
                 var card = battlegroundsCards[i];
                 if (card.IsDead())
                 {
-                    battlegroundsModel.RemoveBattlegroundsCard(card);
+                    yield return battlegroundsModel.RemoveBattlegroundsCard(card);
 
                     // Not cool
                     handController.RemoveCardFromBattlegroundsQueue(handController.battlegroundsQueueCards[i]);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AutoCCG
@@ -28,19 +29,16 @@ namespace AutoCCG
             }
         }
 
-        public void RemoveBattlegroundsCard(BattlegroundsCardModel battlegroundsCard)
+        public IEnumerator RemoveBattlegroundsCard(BattlegroundsCardModel battlegroundsCard)
         {
             battlegroundsCards.Remove(battlegroundsCard);
-            battlegroundsView.RemoveBattlegroundsCard(battlegroundsCard);
+            yield return battlegroundsView.RemoveBattlegroundsCard(battlegroundsCard);
         }
 
         public void ClearBattlegrounds()
         {
-            for (int i = battlegroundsCards.Count - 1; i >= 0; i--)
-            {
-                RemoveBattlegroundsCard(battlegroundsCards[i]);
-            }
-            battlegroundsView.ClearRemovedCards();
+            battlegroundsCards.Clear();
+            battlegroundsView.Clear();
         }
 
         public List<BattlegroundsCardModel> GetArea(Area area)

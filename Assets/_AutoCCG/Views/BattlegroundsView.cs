@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AutoCCG
@@ -39,11 +41,18 @@ namespace AutoCCG
             }
         }
 
-        public void RemoveBattlegroundsCard(BattlegroundsCardModel battlegroundsCardModel)
+        public IEnumerator RemoveBattlegroundsCard(BattlegroundsCardModel battlegroundsCardModel)
         {
             var battlegroundsCardView = battlegroundsCards.Find(battlegroundsCard => battlegroundsCard.battlegroundsCardModel == battlegroundsCardModel);
             battlegroundsCards.Remove(battlegroundsCardView);
             removedCards.Add(battlegroundsCardView);
+
+            var sequence = DOTween.Sequence();
+            sequence.Append(battlegroundsCardView.transform.DOLocalMoveY(30f, 1f));
+            sequence.Insert(0, battlegroundsCardView.GetComponent<CanvasGroup>().DOFade(0f, sequence.Duration()));
+
+            yield return sequence.Play().WaitForCompletion();
+
             battlegroundsCardView.gameObject.SetActive(false);
         }
 
@@ -54,6 +63,16 @@ namespace AutoCCG
                 Destroy(card.gameObject);
             }
             removedCards.Clear();
+        }
+
+        public void Clear()
+        {
+            ClearRemovedCards();
+            foreach (var card in battlegroundsCards)
+            {
+                Destroy(card.gameObject);
+            }
+            battlegroundsCards.Clear();
         }
     }
 }

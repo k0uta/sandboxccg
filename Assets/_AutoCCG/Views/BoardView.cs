@@ -34,9 +34,13 @@ namespace AutoCCG
 
         public GameObject playerHand;
 
+        public GameObject enemyHand;
+
         public GameObject playerShop;
 
         public GameObject restockButton;
+
+        public GameObject battlegrounds;
 
         public BoardPhase currentPhase;
 
@@ -81,6 +85,10 @@ namespace AutoCCG
             playerHand.GetComponent<CanvasGroup>().interactable = playerHandEnabled;
             restockButton.GetComponent<Button>().interactable = restockButtonEnabled;
             gameOverArea.SetActive(gameOverAreaEnabled);
+
+            //playerHand.SetActive(currentPhase != BoardPhase.Battle);
+            //enemyHand.SetActive(currentPhase != BoardPhase.Battle);
+            //battlegrounds.SetActive(currentPhase == BoardPhase.Battle);
         }
     }
 }
