@@ -5,6 +5,8 @@
         CombatAttack,
         CombatStart,
         CombatEnd,
-        CardCleanup
+        CardCleanup,
+        BattleStart,
+        BattleEnd
     }
 }

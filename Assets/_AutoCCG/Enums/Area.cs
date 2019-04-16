@@ -4,6 +4,7 @@
     {
         Frontline,
         Backline,
-        Battlegrounds
+        Battlegrounds,
+        Self
     }
 }

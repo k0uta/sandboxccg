@@ -89,5 +89,29 @@ namespace AutoCCG
 
             return cardTokenSkill != null && cardTokenSkill.count <= 0;
         }
+
+        public PlayerModel GetTargetPlayer(TargetPlayer target)
+        {
+            if (target == TargetPlayer.Player)
+            {
+                return cardModel.owner;
+            } else
+            {
+                return playerBattlegrounds.enemyBattlegrounds.battlegroundsCards[0].cardModel.owner;
+            }
+        }
+
+        public List<BattlegroundsCardModel> GetArea(Area area, TargetPlayer targetPlayer = TargetPlayer.Player)
+        {
+            if (area == Area.Self)
+            {
+                var list = new List<BattlegroundsCardModel>();
+                list.Add(this);
+                return list;
+            } else
+            {
+                return playerBattlegrounds.GetArea(area, targetPlayer);
+            }
+        }
     }
 }

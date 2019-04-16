@@ -12,7 +12,7 @@ namespace AutoCCG
         {
             var effectSteps = new List<ActionStepModel>();
 
-            var damageStep = new ActionStepModel(() => battlegroundsCard.ApplyDamage(amount));
+            var damageStep = new ActionStepModel(DamageToSelf(amount, battlegroundsCard));
             effectSteps.Add(damageStep);
 
             return effectSteps;

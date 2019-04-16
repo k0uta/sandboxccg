@@ -28,20 +28,26 @@ namespace AutoCCG
 
         public void UpdateView()
         {
+            cardView.UpdateView();
             cardView.SetCardLife(battlegroundsCardModel.cardModel.life - battlegroundsCardModel.damageReceived);
             cardView.SetCardMana(battlegroundsCardModel.currentMana);
-            cardView.UpdateCardSkills();
         }
 
         public Sequence GetValueIncrementSequence(int amount, float duration)
+        {
+            var color = amount < 0 ? Color.red : Color.green;
+            return GetValueIncrementSequence(amount, duration, color);
+        }
+
+        public Sequence GetValueIncrementSequence(int amount, float duration, Color color)
         {
             var damageSequence = DOTween.Sequence();
 
             damageSequence.Append(transform.DOPunchPosition(new Vector3(4f, 0f), duration));
 
-            damageSequence.Insert(0, cardView.GetComponent<Image>().DOColor(Color.red, damageSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+            damageSequence.Insert(0, cardView.GetComponent<Image>().DOColor(color, damageSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
 
-            amountText.color = amount < 0 ? Color.red : Color.green;
+            amountText.color = color;
             amountText.alpha = 1f;
             amountText.text = amount.ToString();
 

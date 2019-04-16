@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
+  m_Name: Wise Cat
+  m_EditorClassIdentifier: 
+  title: Wise Cat
+  sprite: {fileID: 21300000, guid: 97a58c3ef5300df4e9012e3fdfa6ba5f, type: 3}
+  attack: 0
+  life: 2
+  mana: 2
+  cost: 2
+  owner: {fileID: 0}
+  cardSkills:
+  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
+  - {fileID: 114288004886795962}
+--- !u!114 &114288004886795962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1643136b14de6a2409d9387f9389bea1, type: 3}
+  m_Name: (Mana Skill) Gather Gold
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 7c14ec0226d2d8f4bb78121ffbbf1a35, type: 3}
+  title: Gather Gold
+  description: Gain 1 gold
+  phase: 1
+  actionPriority: 1
+  actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114637485754577876}
+  manaCost: 2
+--- !u!114 &114637485754577876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542692f6a9a8fcf4bb83f6108a2ebb16, type: 3}
+  m_Name: '(Effect) Add Gold To Target '
+  m_EditorClassIdentifier: 
+  amount: 1
+  target: 0

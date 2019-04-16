@@ -34,7 +34,7 @@ namespace AutoCCG
             UpdateView();
         }
 
-        void UpdateView()
+        public void UpdateView()
         {
             cardImage.sprite = cardModel.sprite;
 

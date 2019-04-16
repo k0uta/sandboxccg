@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
+  m_Name: Armored Cat
+  m_EditorClassIdentifier: 
+  title: Armored Cat
+  sprite: {fileID: 21300000, guid: e8f0bc4fa6547814b85531daa0352b8c, type: 3}
+  attack: 0
+  life: 4
+  mana: 2
+  cost: 3
+  owner: {fileID: 0}
+  cardSkills:
+  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
+  - {fileID: 114164639398217982}
+--- !u!114 &114119842634024416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
+  m_Name: (Token Skill) Shield Damage
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 2cb996c626683004a927a597085ca51d, type: 3}
+  title: Shield Damage
+  description: Take 1 less damage of every source
+  phase: 1
+  actionPriority: 0
+  actionType: 0
+  color: {r: 0.19447756, g: 1, b: 0, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114303044323383758}
+--- !u!114 &114164639398217982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1643136b14de6a2409d9387f9389bea1, type: 3}
+  m_Name: (Mana Skill) Gold Shield
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 2cb996c626683004a927a597085ca51d, type: 3}
+  title: Gold Shield
+  description: Spent 1 gold to gain Shield
+  phase: 1
+  actionPriority: 0
+  actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114709531212454964}
+  manaCost: 2
+--- !u!114 &114303044323383758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a254c8ef8758ced4288a35bf9e1bfd91, type: 3}
+  m_Name: '(Effect) Add Damage Modifier To Self '
+  m_EditorClassIdentifier: 
+  modifier: -1
+--- !u!114 &114661766187378716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72e07cdc78702f41aa9c4b78cb96046, type: 3}
+  m_Name: '(Effect) Add Token Skill To Area '
+  m_EditorClassIdentifier: 
+  tokenSkill: {fileID: 114119842634024416}
+  area: 3
+  targetPlayer: 0
+  tokenAmount: 1
+--- !u!114 &114709531212454964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea01a095aa0fb6469852be51f748a62, type: 3}
+  m_Name: '(Effect) Spend Gold To Use Skill '
+  m_EditorClassIdentifier: 
+  amount: 1
+  skill: {fileID: 114826025138988492}
+--- !u!114 &114826025138988492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
+  m_Name: (Effect Skill) Shield Self
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 2cb996c626683004a927a597085ca51d, type: 3}
+  title: Shield Self
+  description: Shield self for 1 dmg
+  phase: 1
+  actionPriority: 0
+  actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114661766187378716}

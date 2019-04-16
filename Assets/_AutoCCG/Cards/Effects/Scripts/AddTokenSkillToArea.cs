@@ -20,7 +20,7 @@ namespace AutoCCG
         {
             var effectSteps = new List<ActionStepModel>();
 
-            var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area, targetPlayer);
+            var areaCards = battlegroundsCard.GetArea(area, targetPlayer);
 
             var addTokensStep = new ActionStepModel(AddTokens(battlegroundsCard, areaCards));
             effectSteps.Add(addTokensStep);

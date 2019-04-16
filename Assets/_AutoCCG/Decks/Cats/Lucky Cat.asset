@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
+  m_Name: Lucky Cat
+  m_EditorClassIdentifier: 
+  title: Lucky Cat
+  sprite: {fileID: 21300000, guid: 7921d62bb51ed5f46baf9c316decf742, type: 3}
+  attack: 1
+  life: 1
+  mana: 0
+  cost: 1
+  owner: {fileID: 0}
+  cardSkills:
+  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
+  - {fileID: 114328740384099938}
+--- !u!114 &114257639620821258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542692f6a9a8fcf4bb83f6108a2ebb16, type: 3}
+  m_Name: '(Effect) Add Gold To Target '
+  m_EditorClassIdentifier: 
+  amount: 1
+  target: 0
+--- !u!114 &114328740384099938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
+  m_Name: (Skill) Get Gold Start
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 242e28987bcaa6642a681f29aa1b0d7e, type: 3}
+  title: Lucky Gold
+  description: Get 1 gold every battle start
+  phase: 4
+  actionPriority: 1
+  actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114257639620821258}

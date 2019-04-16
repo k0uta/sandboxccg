@@ -36,3 +36,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: 0
   target: 1
+  useAttack: 1
+  amount: 0

@@ -58,7 +58,7 @@ public class SkillEditor : Editor
             for (int i = 0; i < property.arraySize; i++)
             {
                 var subProperty = property.GetArrayElementAtIndex(i);
-                var subPropertyName = ObjectNames.NicifyVariableName(subProperty.objectReferenceValue.GetType().Name);
+                var subPropertyName = subProperty.objectReferenceValue ? ObjectNames.NicifyVariableName(subProperty.objectReferenceValue.GetType().Name) : "";
 
                 EditorGUILayout.PropertyField(subProperty, new GUIContent(subPropertyName), true);
 

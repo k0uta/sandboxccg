@@ -17,6 +17,8 @@ namespace AutoCCG
         public int mana;
 
         public int cost;
+
+        public PlayerModel owner;
         
         public List<CardSkillModel> cardSkills;
     }

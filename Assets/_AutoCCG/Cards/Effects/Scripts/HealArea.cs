@@ -12,7 +12,7 @@ namespace AutoCCG
         {
             var effectSteps = new List<ActionStepModel>();
 
-            var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area);
+            var areaCards = battlegroundsCard.GetArea(area);
 
             foreach (var card in areaCards)
             {

@@ -6,18 +6,22 @@ using UnityEngine.UI;
 
 namespace AutoCCG
 {
-    public class ApplyAttackToArea : CardEffectModel
+    public class ApplyDamageToArea : CardEffectModel
     {
         public Area area;
 
         public TargetPlayer target;
 
+        public bool useAttack;
+
+        public int amount;
+
         public override List<ActionStepModel> CreateSteps(BattlegroundsCardModel battlegroundsCard)
         {
             var effectSteps = new List<ActionStepModel>();
 
-            var areaCards = battlegroundsCard.playerBattlegrounds.GetArea(area, target);
-            var damage = battlegroundsCard.cardModel.attack;
+            var areaCards = battlegroundsCard.GetArea(area, target);
+            var damage = useAttack? battlegroundsCard.cardModel.attack : amount;
 
             var damageStep = new ActionStepModel(DamageToArea(damage, battlegroundsCard, areaCards));
             effectSteps.Add(damageStep);

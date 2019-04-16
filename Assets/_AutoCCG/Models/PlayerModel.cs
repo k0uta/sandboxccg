@@ -154,6 +154,7 @@ namespace AutoCCG
         {
             var card = shopController.cards[cardId];
 
+            card.owner = this;
             handModel.AddCard(card);
 
             shopController.RemoveCardById(cardId);
