@@ -394,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemy: {fileID: 0}
-  startingHealth: 20
+  startingHealth: 10
   startingGold: 30
 --- !u!4 &296361396
 Transform:

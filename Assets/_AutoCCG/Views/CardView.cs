@@ -76,7 +76,7 @@ namespace AutoCCG
         public void SetCardMana(int currentMana)
         {
             cardMana.text = string.Format("{0}/{1}", currentMana, cardModel.mana);
-            cardManaSlider.value = (float)currentMana / (float)cardModel.mana;
+            cardManaSlider.value = cardModel.mana == 0 ? 1.0f : (float)currentMana / (float)cardModel.mana;
         }
 
         public void Inspect()

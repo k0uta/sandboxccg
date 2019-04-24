@@ -42,6 +42,11 @@ namespace AutoCCG
         public Sequence GetValueIncrementSequence(int amount, float duration, Color color)
         {
             var damageSequence = DOTween.Sequence();
+            
+            if (amount == 0)
+            {
+                return damageSequence;
+            }
 
             damageSequence.Append(transform.DOPunchPosition(new Vector3(4f, 0f), duration));
 

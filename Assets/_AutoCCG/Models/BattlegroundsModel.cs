@@ -46,9 +46,9 @@ namespace AutoCCG
             switch (area)
             {
                 case Area.Frontline:
-                    return battlegroundsCards.GetRange(0, 1);
+                    return battlegroundsCards.Count > 0 ? battlegroundsCards.GetRange(0, 1) : null;
                 case Area.Backline:
-                    return battlegroundsCards.GetRange(1, battlegroundsCards.Count - 1);
+                    return battlegroundsCards.Count > 1 ? battlegroundsCards.GetRange(1, battlegroundsCards.Count - 1) : null;
                 case Area.Battlegrounds:
                     return battlegroundsCards;
                 default:
@@ -78,6 +78,7 @@ namespace AutoCCG
                     return true;
                 }
             }
+
             return false;
         }
     }

@@ -20,9 +20,14 @@ namespace AutoCCG
         {
             var effectSteps = new List<ActionStepModel>();
 
-            var areaCards = battlegroundsCard.GetArea(area, target);
-            var damage = useAttack? battlegroundsCard.cardModel.attack : amount;
+            var damage = useAttack ? battlegroundsCard.cardModel.attack : amount;
 
+            if (damage <= 0)
+            {
+                return effectSteps;
+            }
+
+            var areaCards = battlegroundsCard.GetArea(area, target);
             var damageStep = new ActionStepModel(DamageToArea(damage, battlegroundsCard, areaCards));
             effectSteps.Add(damageStep);
 
@@ -37,7 +42,9 @@ namespace AutoCCG
 
             sourceSequence.Append(source.battlegroundsCardView.transform.DOPunchScale(new Vector3(0.1f, 0.1f), 0.5f));
 
-            sourceSequence.Insert(0, source.battlegroundsCardView.cardView.GetComponent<Image>().DOColor(Color.blue, sourceSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
+            sourceSequence.Insert(0,
+                source.battlegroundsCardView.cardView.GetComponent<Image>()
+                    .DOColor(Color.blue, sourceSequence.Duration() / 2f).SetLoops(2, LoopType.Yoyo));
 
             sequence.Append(sourceSequence);
 
@@ -46,7 +53,8 @@ namespace AutoCCG
                 var totalDamage = target.ApplyDamage(damage);
                 target.battlegroundsCardView.UpdateView();
 
-                var targetDamageSequence = target.battlegroundsCardView.GetValueIncrementSequence(-totalDamage, sourceSequence.Duration());
+                var targetDamageSequence =
+                    target.battlegroundsCardView.GetValueIncrementSequence(-totalDamage, sourceSequence.Duration());
                 sequence.Insert(0, targetDamageSequence);
             }
 

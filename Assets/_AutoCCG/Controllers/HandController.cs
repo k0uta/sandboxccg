@@ -71,7 +71,7 @@ namespace AutoCCG
             foreach (var handCard in battlegroundsQueueCards)
             {
                 handCard.gameObject.SetActive(true);
-                handCard.cardView.UpdateCardSkills();
+                handCard.cardView.UpdateView();
             }
         }
 

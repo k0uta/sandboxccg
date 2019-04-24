@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AutoCCG
@@ -13,7 +14,34 @@ namespace AutoCCG
 
         public int restockPrice;
 
-        public int currentTurn;
+        private int currentTurn;
+
+        private readonly List<float> cardWeights = new List<float>();
+
+        public int CurrentTurn
+        {
+            set
+            {
+                currentTurn = value;
+                RecalculateWeights();
+            }
+        }
+
+        private void RecalculateWeights()
+        {
+            cardWeights.Clear();
+
+            var baseWeight = 1.0f;
+            var maxCost = cards.Max(cardModel => cardModel.cost);
+            var maxCostAllowed = Mathf.Min(currentTurn, maxCost);
+
+            for (var i = 1; i <= maxCostAllowed; i++)
+            {
+                var currentWeight = baseWeight * Mathf.Pow(0.75f, (float) maxCostAllowed - i);
+                cardWeights.Add(currentWeight);
+                baseWeight -= currentWeight;
+            }
+        }
 
         void Awake()
         {
@@ -29,7 +57,7 @@ namespace AutoCCG
         public void Restock(int seed)
         {
             Random.InitState(seed);
-            cards.WeightedShuffle((cardModel) => cardModel.cost > currentTurn ? 0f : cardModel.cost / currentTurn);
+            cards.WeightedShuffle((cardModel) => cardModel.cost > currentTurn ? 0f : cardWeights[cardModel.cost-1]);
 
             if (shopView)
             {

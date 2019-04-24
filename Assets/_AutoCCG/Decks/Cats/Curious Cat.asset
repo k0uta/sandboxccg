@@ -21,8 +21,8 @@ MonoBehaviour:
   owner: {fileID: 0}
   cardSkills:
   - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
-  - {fileID: 114328740384099938}
---- !u!114 &114328740384099938
+  - {fileID: 114904717226080642}
+--- !u!114 &114135335996124164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,20 +31,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
-  m_Name: (Skill) Get Gold End
+  m_Script: {fileID: 11500000, guid: c9e0f37584e97984a9d17f1c0e0e0173, type: 3}
+  m_Name: '(Condition) Target Is Dead '
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 14e81fdd957384e418d8d56e957938f0, type: 3}
-  title: Lucky Gold
-  description: Get 1 gold every battle end
-  phase: 5
-  actionPriority: 1
-  actionType: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
-  conditions: []
-  effects:
-  - {fileID: 114345269759675226}
---- !u!114 &114345269759675226
+  target: 0
+--- !u!114 &114327287053396168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,3 +49,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 1
   target: 0
+--- !u!114 &114904717226080642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
+  m_Name: (Skill) Gold On Death
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 14e81fdd957384e418d8d56e957938f0, type: 3}
+  title: Golden Curiosity
+  description: Receive 1G on Death
+  phase: 3
+  actionPriority: 0
+  actionType: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions:
+  - {fileID: 114135335996124164}
+  effects:
+  - {fileID: 114327287053396168}

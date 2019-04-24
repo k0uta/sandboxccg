@@ -109,7 +109,7 @@ namespace AutoCCG
         [ClientRpc]
         public void RpcSetCurrentTurn(int currentTurn)
         {
-            shopController.currentTurn = currentTurn;
+            shopController.CurrentTurn = currentTurn;
         }
 
         [Command]

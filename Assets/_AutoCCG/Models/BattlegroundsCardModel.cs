@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace AutoCCG
 {
@@ -32,6 +33,8 @@ namespace AutoCCG
             {
                 totalDamage = damageFormula(totalDamage);
             }
+
+            totalDamage = Mathf.Max(0, totalDamage);
 
             damageReceived += totalDamage;
 
