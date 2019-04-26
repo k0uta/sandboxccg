@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
+  m_Name: Siege Dog
+  m_EditorClassIdentifier: 
+  title: Siege Dog
+  sprite: {fileID: 21300000, guid: b82dcc68053b9d542b4812636181bde4, type: 3}
+  attack: 0
+  life: 1
+  mana: 3
+  cost: 2
+  owner: {fileID: 0}
+  cardSkills:
+  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
+  - {fileID: 114306322933726948}
+--- !u!114 &114200533652593822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa15018d5c0ffde4f859ffc60e0f3a9e, type: 3}
+  m_Name: '(Effect) Apply Damage To Area '
+  m_EditorClassIdentifier: 
+  area: 4
+  target: 1
+  useAttack: 0
+  amount: 1
+--- !u!114 &114306322933726948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1643136b14de6a2409d9387f9389bea1, type: 3}
+  m_Name: (Mana Skill) Siege
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 3a52208915c95e240af3f0be10eedab7, type: 3}
+  title: Siege
+  description: Cause 1 DMG to the last enemy
+  phase: 1
+  actionPriority: 1
+  actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114200533652593822}
+  manaCost: 3

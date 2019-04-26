@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
+  m_Name: Infantry Dog
+  m_EditorClassIdentifier: 
+  title: Infantry Dog
+  sprite: {fileID: 21300000, guid: d9b8ae72f51e28948a3ceb7120e555d4, type: 3}
+  attack: 1
+  life: 1
+  mana: 0
+  cost: 1
+  owner: {fileID: 0}
+  cardSkills:
+  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
+  - {fileID: 114084866927235284}
+--- !u!114 &114084866927235284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
+  m_Name: (Skill) Gain Atk
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: f11eac2107bad854a93c5a6774eaebd6, type: 3}
+  title: Ready to Fight
+  description: Gain 1 ATK
+  phase: 4
+  actionPriority: 1
+  actionType: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114465516884637638}
+--- !u!114 &114465516884637638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea668017e3664e54f91027f94c053815, type: 3}
+  m_Name: '(Effect) Add Attack Modifier To Area '
+  m_EditorClassIdentifier: 
+  modifier: 1
+  permanent: 1
+  area: 3
+  targetPlayer: 0
