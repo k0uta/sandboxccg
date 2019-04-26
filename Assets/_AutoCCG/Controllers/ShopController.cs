@@ -18,6 +18,8 @@ namespace AutoCCG
 
         private readonly List<float> cardWeights = new List<float>();
 
+        private const int TURN_QUOTA_AMOUNT = 1;
+
         public int CurrentTurn
         {
             set
@@ -57,11 +59,36 @@ namespace AutoCCG
         public void Restock(int seed)
         {
             Random.InitState(seed);
-            cards.WeightedShuffle((cardModel) => cardModel.cost > currentTurn ? 0f : cardWeights[cardModel.cost-1]);
+
+            ShuffleCards();
 
             if (shopView)
             {
                 shopView.UpdateSlotsCard(cards);
+            }
+        }
+
+        private void ShuffleCards()
+        {
+            var turnQuotaCards = cards.FindAll((cardModel => cardModel.cost == currentTurn));
+
+            turnQuotaCards.Shuffle();
+
+            if (turnQuotaCards.Count > TURN_QUOTA_AMOUNT)
+            {
+                turnQuotaCards.RemoveRange(TURN_QUOTA_AMOUNT, turnQuotaCards.Count - TURN_QUOTA_AMOUNT);
+            }
+
+            foreach (var quotaCard in turnQuotaCards)
+            {
+                cards.Remove(quotaCard);
+            }
+
+            cards.WeightedShuffle((cardModel) => cardModel.cost > currentTurn ? 0f : cardWeights[cardModel.cost-1]);
+            
+            foreach (var quotaCard in turnQuotaCards)
+            {
+                cards.Insert(0, quotaCard);
             }
         }
 
