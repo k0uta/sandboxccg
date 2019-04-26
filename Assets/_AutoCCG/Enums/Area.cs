@@ -5,6 +5,7 @@
         Frontline,
         Backline,
         Battlegrounds,
-        Self
+        Self,
+        LastCard
     }
 }

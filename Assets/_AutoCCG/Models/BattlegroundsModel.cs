@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AutoCCG
@@ -51,6 +52,8 @@ namespace AutoCCG
                     return battlegroundsCards.Count > 1 ? battlegroundsCards.GetRange(1, battlegroundsCards.Count - 1) : null;
                 case Area.Battlegrounds:
                     return battlegroundsCards;
+                case Area.LastCard:
+                    return battlegroundsCards.Count > 0 ? battlegroundsCards.GetRange(battlegroundsCards.Count - 1, 1) : null;
                 default:
                     throw new KeyNotFoundException();
             }
