@@ -12,4 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81edb7022bdd564d8605bcc948e392b, type: 3}
   m_Name: Dogs
   m_EditorClassIdentifier: 
-  entries: []
+  entries:
+  - card: {fileID: 0}
+    quantity: 5
+  - card: {fileID: 0}
+    quantity: 4
+  - card: {fileID: 0}
+    quantity: 4
+  - card: {fileID: 0}
+    quantity: 3
+  - card: {fileID: 0}
+    quantity: 3
+  - card: {fileID: 0}
+    quantity: 2
+  - card: {fileID: 0}
+    quantity: 2
+  - card: {fileID: 0}
+    quantity: 1
+  - card: {fileID: 0}
+    quantity: 1
+  - card: {fileID: 0}
+    quantity: 1
