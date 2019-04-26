@@ -18,7 +18,9 @@ namespace AutoCCG
 
         private readonly List<float> cardWeights = new List<float>();
 
-        private const int TURN_QUOTA_AMOUNT = 1;
+        private const int TurnQuotaAmount = 1;
+
+        private const float TurnCardDecay = 0.4f;
 
         public int CurrentTurn
         {
@@ -39,7 +41,7 @@ namespace AutoCCG
 
             for (var i = 1; i <= maxCostAllowed; i++)
             {
-                var currentWeight = baseWeight * Mathf.Pow(0.75f, (float) maxCostAllowed - i);
+                var currentWeight = baseWeight * Mathf.Pow(1 - TurnCardDecay, (float) maxCostAllowed - i);
                 cardWeights.Add(currentWeight);
                 baseWeight -= currentWeight;
             }
@@ -74,9 +76,9 @@ namespace AutoCCG
 
             turnQuotaCards.Shuffle();
 
-            if (turnQuotaCards.Count > TURN_QUOTA_AMOUNT)
+            if (turnQuotaCards.Count > TurnQuotaAmount)
             {
-                turnQuotaCards.RemoveRange(TURN_QUOTA_AMOUNT, turnQuotaCards.Count - TURN_QUOTA_AMOUNT);
+                turnQuotaCards.RemoveRange(TurnQuotaAmount, turnQuotaCards.Count - TurnQuotaAmount);
             }
 
             foreach (var quotaCard in turnQuotaCards)
