@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 namespace AutoCCG
 {
-    public class HealArea : CardEffectModel
+    public class HealPlayerForEveryAreaCard : CardEffectModel
     {
-        public int amount;
-
         public Area area;
 
         public TargetPlayer targetPlayer;
@@ -20,13 +18,14 @@ namespace AutoCCG
 
             var areaCards = battlegroundsCard.GetArea(area, targetPlayer);
 
-            var healStep = new ActionStepModel(HealCards(amount, battlegroundsCard, areaCards));
+            var healStep = new ActionStepModel(HealPlayer(areaCards.Count, battlegroundsCard,
+                battlegroundsCard.GetTargetPlayer(targetPlayer)));
             effectSteps.Add(healStep);
 
             return effectSteps;
         }
 
-        IEnumerator HealCards(int healAmount, BattlegroundsCardModel source, List<BattlegroundsCardModel> targets)
+        IEnumerator HealPlayer(int healAmount, BattlegroundsCardModel source, PlayerModel player)
         {
             var sequence = DOTween.Sequence();
 
@@ -40,15 +39,7 @@ namespace AutoCCG
 
             sequence.Append(sourceSequence);
 
-            foreach (var target in targets)
-            {
-                var totalHeal = target.HealDamage(healAmount);
-                target.battlegroundsCardView.UpdateView();
-
-                var targetHealSequence =
-                    target.battlegroundsCardView.GetValueIncrementSequence(totalHeal, sourceSequence.Duration());
-                sequence.Insert(0, targetHealSequence);
-            }
+            player.currentHealth += healAmount;
 
             yield return sequence.Play().WaitForCompletion();
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace AutoCCG
@@ -41,13 +42,27 @@ namespace AutoCCG
                 return null;
             }
 
-            CardActionModel reverseAction = new CardActionModel(Phase.CombatEnd, source, ActionType.Passive, ActionPriority.Default);
+            CardActionModel reverseAction = new CardActionModel(GetReversePhase(), source, ActionType.Passive, ActionPriority.Default);
             foreach (var step in undoSteps)
             {
                 reverseAction.steps.Add(new ActionStepModel(step.undo));
             }
 
             return reverseAction;
+        }
+
+        Phase GetReversePhase()
+        {
+            switch (phase)
+            {
+                case Phase.CombatAttack:
+                case Phase.CombatStart:
+                    return Phase.CombatEnd;
+                case Phase.BattleStart:
+                    return Phase.BattleEnd;
+                default:
+                    return Phase.CombatEnd;
+            }
         }
     }
 

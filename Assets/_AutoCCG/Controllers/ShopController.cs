@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AutoCCG
 {
     public class ShopController : MonoBehaviour
     {
-        public DeckModel deck;
-
         public List<CardModel> cards;
 
         public ShopView shopView;
@@ -47,8 +47,9 @@ namespace AutoCCG
             }
         }
 
-        void Awake()
+        public void SetDeck(DeckModel deck)
         {
+            cards = new List<CardModel>();
             foreach (var cardEntry in deck.entries)
             {
                 for (int i = 0; i < cardEntry.quantity; i++)

@@ -18,6 +18,7 @@ namespace AutoCCG
 
         public int cost;
 
+        [HideInInspector]
         public PlayerModel owner;
         
         public List<CardSkillModel> cardSkills;

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 namespace AutoCCG
 {
@@ -24,6 +26,10 @@ namespace AutoCCG
 
         [SyncVar]
         public string playerName;
+
+        public DeckModel catsDeck;
+
+        public DeckModel dogsDeck;
 
         void Start()
         {
@@ -293,8 +299,19 @@ namespace AutoCCG
         }
 
         [ClientRpc]
-        public void RpcSyncBattlegrounds()
+        public void RpcSyncBattlegroundsAndDeck(DeckNames deckName)
         {
+            switch (deckName)
+            {
+                case DeckNames.Cats:
+                    shopController.SetDeck(catsDeck);
+                    break;
+                case DeckNames.Dogs:
+                    shopController.SetDeck(dogsDeck);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(deckName), deckName, null);
+            }
             if (isLocalPlayer)
             {
                 return;

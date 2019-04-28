@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f82c292ca55c4bae4ab45df47d93c, type: 3}
+  m_Name: Defender Dog
+  m_EditorClassIdentifier: 
+  title: Defender Dog
+  sprite: {fileID: 21300000, guid: 8f15e0226b45554459dd89adee9e836a, type: 3}
+  attack: 0
+  life: 2
+  mana: 0
+  cost: 3
+  owner: {fileID: 0}
+  cardSkills:
+  - {fileID: 11400000, guid: a4e5d9e6cd5fa174fb8c3a6f557d36eb, type: 2}
+  - {fileID: 114518074345366224}
+--- !u!114 &114200636077949180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053af66f56640ab4284d6098d919f916, type: 3}
+  m_Name: '(Effect) Add Health Modifier To Area '
+  m_EditorClassIdentifier: 
+  modifier: 1
+  permanent: 0
+  area: 2
+  targetPlayer: 0
+--- !u!114 &114518074345366224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651dfcdcdd85494cbbd676ddc60fd32, type: 3}
+  m_Name: (Skill) Protect the weak
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: b70af3f7c8988664dbd7016fc51b11ec, type: 3}
+  title: Protect the weak
+  description: All other dogs receive 1HP this combat
+  phase: 4
+  actionPriority: 1
+  actionType: 1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  conditions: []
+  effects:
+  - {fileID: 114200636077949180}

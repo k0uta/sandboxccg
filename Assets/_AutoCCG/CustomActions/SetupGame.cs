@@ -12,8 +12,8 @@ namespace HutongGames.PlayMaker.Actions
             var playerModel = boardController.player.GetComponentInChildren<PlayerModel>();
             var enemyModel = boardController.enemy.GetComponentInChildren<PlayerModel>();
 
-            playerModel.RpcSyncBattlegrounds();
-            enemyModel.RpcSyncBattlegrounds();
+            playerModel.RpcSyncBattlegroundsAndDeck(DeckNames.Cats);
+            enemyModel.RpcSyncBattlegroundsAndDeck(DeckNames.Dogs);
 
             Finish();
         }

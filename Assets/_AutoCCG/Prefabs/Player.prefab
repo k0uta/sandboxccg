@@ -55,6 +55,8 @@ MonoBehaviour:
   handController: {fileID: 659278444895565131}
   battlegroundsModel: {fileID: 659278445511630681}
   playerName: 
+  catsDeck: {fileID: 11400000, guid: f4b092207ab07624db42145c2627377f, type: 2}
+  dogsDeck: {fileID: 11400000, guid: 2f484038c35e9984097d5a263a12f523, type: 2}
 --- !u!114 &659278444640296280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battlegroundsView: {fileID: 0}
+  enemyBattlegrounds: {fileID: 0}
 --- !u!1 &659278445784890275
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa676771f9a92946bed6b8ce31d8f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck: {fileID: 11400000, guid: f4b092207ab07624db42145c2627377f, type: 2}
   cards: []
   shopView: {fileID: 0}
   restockPrice: 2

@@ -41,13 +41,15 @@ namespace AutoCCG
             return totalDamage;
         }
 
-        public void HealDamage(int healAmount)
+        public int HealDamage(int healAmount)
         {
             damageReceived -= healAmount;
             if (damageReceived < 0)
             {
                 damageReceived = 0;
             }
+
+            return healAmount;
         }
 
         public bool IsDead()
@@ -106,14 +108,32 @@ namespace AutoCCG
 
         public List<BattlegroundsCardModel> GetArea(Area area, TargetPlayer targetPlayer = TargetPlayer.Player)
         {
-            if (area == Area.Self)
+            switch (area)
             {
-                var list = new List<BattlegroundsCardModel>();
-                list.Add(this);
-                return list;
-            } else
-            {
-                return playerBattlegrounds.GetArea(area, targetPlayer);
+                case Area.Self:
+                {
+                    var list = new List<BattlegroundsCardModel> {this};
+                    return list;
+                }
+                case Area.Owned:
+                {
+                    var list = new List<BattlegroundsCardModel>();
+                    foreach (var battlegroundsCard in playerBattlegrounds.battlegroundsCards)
+                    {
+                        list.Add(battlegroundsCard);
+                    }
+
+                    foreach (var card in cardModel.owner.handModel.cards)
+                    {
+                        if (list.Exists((battlegroundsCardModel) => battlegroundsCardModel.cardModel == card)) continue;
+                    
+                        var battlegroundsCard = new BattlegroundsCardModel(card);
+                        list.Add(battlegroundsCard);
+                    }
+                    return list;
+                }
+                default:
+                    return playerBattlegrounds.GetArea(area, targetPlayer);
             }
         }
     }

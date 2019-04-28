@@ -6,6 +6,7 @@
         Backline,
         Battlegrounds,
         Self,
-        LastCard
+        LastCard,
+        Owned
     }
 }

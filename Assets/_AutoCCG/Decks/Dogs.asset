@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: Dogs
   m_EditorClassIdentifier: 
   entries:
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 5f4e982af70ecbb4da4842cdf9d1a0de, type: 2}
     quantity: 5
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 838f606d8cfb50645849456d6d2fcf46, type: 2}
     quantity: 4
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 83bc5f63b0be68b4cb427f39dccaf2d4, type: 2}
     quantity: 4
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 60ae81bb38313ee4ba257bdc291f96fd, type: 2}
     quantity: 3
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 2254faa28076a4d42909393ae74f022b, type: 2}
     quantity: 3
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 95f1f748edd81ce459b9525f1b2621fe, type: 2}
     quantity: 2
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: d00a4df1f157eeb429e20dd3931f1401, type: 2}
     quantity: 2
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 1e439aad4d9006d4487a5f81d8955fe2, type: 2}
     quantity: 1
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: 94859c33e8b780043b71d131724ef8a2, type: 2}
     quantity: 1
-  - card: {fileID: 0}
+  - card: {fileID: 11400000, guid: d11e67acc76b2674198e776840b14203, type: 2}
     quantity: 1
