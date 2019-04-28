@@ -10,6 +10,8 @@ namespace AutoCCG
         public BattlegroundsView battlegroundsView;
 
         public List<BattlegroundsCardModel> battlegroundsCards;
+        
+        public List<BattlegroundsCardModel> deadCards;
 
         public BattlegroundsModel enemyBattlegrounds;
 
@@ -21,6 +23,7 @@ namespace AutoCCG
         public void CreateBattlegroundsCards(List<CardModel> cards)
         {
             battlegroundsCards = new List<BattlegroundsCardModel>();
+            deadCards = new List<BattlegroundsCardModel>();
             foreach (var cardModel in cards)
             {
                 var battlegroundsCard = new BattlegroundsCardModel(cardModel);
@@ -33,12 +36,14 @@ namespace AutoCCG
         public IEnumerator RemoveBattlegroundsCard(BattlegroundsCardModel battlegroundsCard)
         {
             battlegroundsCards.Remove(battlegroundsCard);
+            deadCards.Add(battlegroundsCard);
             yield return battlegroundsView.RemoveBattlegroundsCard(battlegroundsCard);
         }
 
         public void ClearBattlegrounds()
         {
             battlegroundsCards.Clear();
+            deadCards.Clear();
             battlegroundsView.Clear();
         }
 

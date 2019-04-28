@@ -29,7 +29,7 @@ namespace AutoCCG
         public void UpdateView()
         {
             cardView.UpdateView();
-            cardView.SetCardLife(battlegroundsCardModel.cardModel.life - battlegroundsCardModel.damageReceived);
+            cardView.SetCardLife(battlegroundsCardModel.cardModel.Life - battlegroundsCardModel.damageReceived);
             cardView.SetCardMana(battlegroundsCardModel.currentMana);
         }
 

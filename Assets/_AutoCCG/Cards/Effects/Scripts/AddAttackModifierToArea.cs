@@ -21,8 +21,8 @@ namespace AutoCCG
 
             foreach (var card in areaCards)
             {
-                Action reverseStep = () => card.cardModel.attack -= modifier;
-                var modifierStep = new ActionStepModel(() => card.cardModel.attack += modifier, !permanent ? reverseStep : null);
+                Action reverseStep = () => card.cardModel.Attack -= modifier;
+                var modifierStep = new ActionStepModel(() => card.cardModel.Attack += modifier, !permanent ? reverseStep : null);
                 effectSteps.Add(modifierStep);
             }
 

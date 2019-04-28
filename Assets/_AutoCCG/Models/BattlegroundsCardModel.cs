@@ -54,7 +54,7 @@ namespace AutoCCG
 
         public bool IsDead()
         {
-            return damageReceived >= cardModel.life;
+            return damageReceived >= cardModel.Life;
         }
 
         public List<BattlegroundsCardModel> GetTargets(Target target)

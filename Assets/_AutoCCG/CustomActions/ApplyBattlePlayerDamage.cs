@@ -33,7 +33,7 @@ namespace HutongGames.PlayMaker.Actions
         {
             foreach (var battlegroundsCard in battlegrounds.battlegroundsCards)
             {
-                target.ApplyDamage(battlegroundsCard.cardModel.attack);
+                target.ApplyDamage(battlegroundsCard.cardModel.Attack);
             }
         }
     }

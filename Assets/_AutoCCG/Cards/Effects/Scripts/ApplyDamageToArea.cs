@@ -20,7 +20,7 @@ namespace AutoCCG
         {
             var effectSteps = new List<ActionStepModel>();
 
-            var damage = useAttack ? battlegroundsCard.cardModel.attack : amount;
+            var damage = useAttack ? battlegroundsCard.cardModel.Attack : amount;
 
             if (damage <= 0)
             {

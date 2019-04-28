@@ -11,13 +11,11 @@ namespace AutoCCG
         public override List<ActionStepModel> CreateSteps(BattlegroundsCardModel battlegroundsCard)
         {
             var effectSteps = new List<ActionStepModel>();
-            var cards = battlegroundsCard.GetArea(Area.Battlegrounds, targetPlayer);
+            var cards = battlegroundsCard.playerBattlegrounds.deadCards;
 
             foreach (var card in cards)
             {
-                if (!card.IsDead()) continue;
-
-                var modifierStep = new ActionStepModel(() => battlegroundsCard.cardModel.attack += modifier);
+                var modifierStep = new ActionStepModel(() => battlegroundsCard.cardModel.Attack += modifier);
                 effectSteps.Add(modifierStep);
             }
 

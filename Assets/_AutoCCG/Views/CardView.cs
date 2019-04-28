@@ -30,7 +30,13 @@ namespace AutoCCG
 
         public void SetCard(CardModel _cardModel)
         {
+            if (cardModel != null)
+            {
+                cardModel.UpdateEvent -= UpdateView;
+            }
             cardModel = _cardModel;
+
+            cardModel.UpdateEvent += UpdateView;
             UpdateView();
         }
 
@@ -39,17 +45,22 @@ namespace AutoCCG
             cardImage.sprite = cardModel.sprite;
 
             cardTitle.text = cardModel.title;
-            cardAttack.text = string.Format("{0}", cardModel.attack);
+            cardAttack.text = string.Format("{0}", cardModel.Attack);
             cardCost.text = string.Format("{0}g", cardModel.cost);
 
             UpdateCardSkills();
 
-            SetCardLife(cardModel.life);
+            SetCardLife(cardModel.Life);
             SetCardMana(cardModel.mana);
         }
 
         public void UpdateCardSkills()
         {
+            if (skillsArea == null)
+            {
+                return;
+            }
+
             for (int i = skillsArea.childCount - 1; i >= 0; i--)
             {
                 Destroy(skillsArea.GetChild(i).gameObject);
@@ -69,8 +80,8 @@ namespace AutoCCG
 
         public void SetCardLife(int currentLife)
         {
-            cardLife.text = string.Format("{0}/{1}", currentLife, cardModel.life);
-            cardLifeSlider.value = (float)currentLife / (float)cardModel.life;
+            cardLife.text = string.Format("{0}/{1}", currentLife, cardModel.Life);
+            cardLifeSlider.value = (float)currentLife / (float)cardModel.Life;
         }
 
         public void SetCardMana(int currentMana)
